@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dashboard_donor',
+    'dashboard_pencari_donor',
+    'faq',
+    'form_donor',
+    'form_pencari_donor',
+    'landing_page',
+    'lokasi_donor',
 ]
 
 MIDDLEWARE = [
