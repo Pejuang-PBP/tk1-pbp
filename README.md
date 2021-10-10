@@ -6,7 +6,7 @@
 
 ## Cerita Aplikasi:
 
-TO BE ADDED
+Di masa pandemi Covid-19 ini, kebutuhan akan plasma konvalesen semakin meningkat seiring dengan bertambahnya jumlah masyarakat yang terinfeksi Covid-19. Berbagai penelitian membuktikan bahwa plasma konvalesen dapat meringankan gejala yang dialami pasien Covid-19, mempercepat proses penyembuhan, hingga menurunkan resiko kematian pasien Covid-19. Sayangnya, permintaan plasma konvalesen ini tidak sebanding dengan ketersediaannya. Oleh karena itu, kelompok kami berencana untuk merancang aplikasi website untuk mempermudah pencarian donor plasma darah konvalesen.
 
 ## Modul Website:
 
