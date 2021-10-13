@@ -8,6 +8,11 @@
 
 Di masa pandemi Covid-19 ini, kebutuhan akan plasma konvalesen semakin meningkat seiring dengan bertambahnya jumlah masyarakat yang terinfeksi Covid-19. Berbagai penelitian membuktikan bahwa plasma konvalesen dapat meringankan gejala yang dialami pasien Covid-19, mempercepat proses penyembuhan, hingga menurunkan resiko kematian pasien Covid-19. Sayangnya, permintaan plasma konvalesen ini tidak sebanding dengan ketersediaannya. Oleh karena itu, kelompok kami berencana untuk merancang aplikasi website untuk mempermudah pencarian donor plasma darah konvalesen.
 
+Manfaat aplikasi ini untuk masyarakat umum:
+
+- Mempermudah pencarian donor konvalesen untuk pasien yang terkena COVID-19 dan tidak memiliki keluarga yang sudah pernah terkena COVID.
+- Mempermudah donor yang ingin membantu pasien COVID-19 untuk memberikan donasi plasma konvalesen.
+
 ## Modul Website:
 
 - Landing Page: Naufan
