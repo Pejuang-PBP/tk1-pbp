@@ -38,4 +38,4 @@ setInterval(() => {
       });
       document.getElementById("notifications").innerHTML = inner;
     });
-}, 1000);
+}, 10000);

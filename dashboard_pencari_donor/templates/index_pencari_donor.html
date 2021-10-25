@@ -17,7 +17,7 @@
   <div class="row">
     <div class="p-5 mb-3 bg-light-blue rounded-10">
       <div class="container-fluid py-3">
-        <h1 class="display-6 fw-bold">Halo, Adrian Ardizza</h1>
+        <h1 class="display-6 fw-bold">Halo, {{ user.username }}</h1>
         <p class="fs-5">
           Anda berstatus sebagai
           <span class="text-oxford-blue fw-bold">Pencari Donor</span>
@@ -60,5 +60,6 @@
 {% endblock %}
 
 {% block scripts %}
+  <!-- AJAX call to fetch and render notifications -->
   <script src="{% static 'dashboard/scripts/pencari_donor/notifications.js' %}"></script>
 {% endblock %}
