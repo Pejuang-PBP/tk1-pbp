@@ -2,7 +2,7 @@ from django import forms
 from data_models.models import Pendonor
 
 class PendonorForm(forms.ModelForm):
-	agreement = forms.BooleanField(label='Dengan ini saya menyatakan bersedia untuk menjadi pendonor plasma konvalesen dan siap dihubungi oleh Tim Satgas Penanganan COVID-19 Indonesia atau Palang Merah Indonesia', required=True)
+	agreement = forms.BooleanField(label='Dengan ini saya menyatakan bersedia untuk menjadi pendonor plasma konvalesen', required=True)
 	agreement.widget.attrs.update({'class':'form-check-input', 'type':'checkbox'})
 	class Meta:
 		model = Pendonor
