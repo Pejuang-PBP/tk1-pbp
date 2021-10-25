@@ -1,46 +1,63 @@
-{% extends "bootstrap_skeleton.html" %} 
-{% load static %}
+{% extends "dashboard/skeleton.html" %} {% load static %} {% block title %}
+KonvaSearch - Dashboard {% endblock %} {% block head %}
+<link href="{% static 'main.css' %}" rel="stylesheet" />
+<link href="{% static 'dashboard/index.css' %}" rel="stylesheet" />
+<style>
+  body {
+    padding: 0rem 1rem;
+  }
+</style>
+{% endblock %} 
 
-{% block title %} Hello, World! {% endblock %}
 
-{% block head %}
-  <link
-    href="{% static 'main.css' %}"
-    rel="stylesheet"
-  />
-  <link
-    href="{% static 'dashboard/index.css' %}"
-    rel="stylesheet"
-  />
-{% endblock %}
-
-{% block content %}
-<div style="min-height: 100vh" class="w-100 h-100 py-4 bg-beau-blue">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 user-select-none">
-        <div class="p-5 mb-4 bg-light rounded-10">
-          <div class="container-fluid py-3">
-            <h1 class="display-6 fw-bold">Halo, Adrian Ardizza</h1>
-            <p class="fs-5">
-              Anda berstatus sebagai <span class="text-oxford-blue fw-bold">Pencari Donor</span>
-            </p>
-            <div id="badge-container" class="d-flex">
-              <span class="badge rounded-pill bg-danger px-3 py-2">Belum Terverifikasi</span>
-              <span class="badge rounded-pill bg-success px-3 py-2">Request Aktif (3)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="p-5 mb-4 bg-light rounded-10">
-          <h4 class="fw-bold">Request Tersedia</h4>
-          
+{% block left_content %}
+  <div class="row">
+    <div class="p-5 mb-4 bg-less-light rounded-10">
+      <div class="container-fluid py-3">
+        <h1 class="display-6 fw-bold">Halo, Adrian Ardizza</h1>
+        <p class="fs-5">
+          Anda berstatus sebagai
+          <span class="text-oxford-blue fw-bold">Pencari Donor</span>
+        </p>
+        <div id="badge-container" class="d-flex">
+          <span class="badge rounded-pill bg-danger px-3 py-2"
+            >Belum Terverifikasi</span
+          >
+          <span class="badge rounded-pill bg-success px-3 py-2"
+            >Request Aktif</span
+          >
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-md-12" style="padding: 0 !important">
+      <div class="p-5 mb-4 bg-less-light rounded-10">
+        <h4 class="fw-bold">Informasi Request</h4>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block right_content %}
+  <div class="p-5 mb-4 bg-less-light rounded-10">
+    <h5 class="fw-bold text-center mb-4">Notifications</h5>
+    <div class="bg-light p-3 rounded-5 mb-3">
+      <p class="mb-0" style="font-weight: 500">
+        Request anda terpenuhi.
+      </p>
+      <p class="mb-0">
+        Silahkan cek page request anda untuk mendapatkan kontak donor
+      </p>
+    </div>
+    <div class="bg-light p-3 rounded-5 mb-3">
+      <p class="mb-0" style="font-weight: 500">
+        Request anda berhasil dibuat.
+      </p>
+      <p class="mb-0">
+        Silahkan cek page request anda untuk mendapatkan kontak donor
+      </p>
+    </div>
+  </div>
 {% endblock %}
