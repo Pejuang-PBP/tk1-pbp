@@ -1,18 +1,21 @@
-{% extends "dashboard/skeleton.html" %} {% load static %} {% block title %}
-KonvaSearch - Dashboard {% endblock %} {% block head %}
-<link href="{% static 'main.css' %}" rel="stylesheet" />
-<link href="{% static 'dashboard/index.css' %}" rel="stylesheet" />
-<style>
-  body {
-    padding: 0rem 1rem;
-  }
-</style>
-{% endblock %} 
+{% extends "dashboard/skeleton.html" %} 
+{% load static %} 
 
+{% block title %} KonvaSearch - Dashboard {% endblock %} 
+
+{% block head %}
+  <link href="{% static 'main.css' %}" rel="stylesheet" />
+  <link href="{% static 'dashboard/index.css' %}" rel="stylesheet" />
+  <style>
+    body {
+      padding: 0rem 1rem;
+    }
+  </style>
+{% endblock %} 
 
 {% block left_content %}
   <div class="row">
-    <div class="p-5 mb-4 bg-less-light rounded-10">
+    <div class="p-5 mb-3 bg-light-blue rounded-10">
       <div class="container-fluid py-3">
         <h1 class="display-6 fw-bold">Halo, Adrian Ardizza</h1>
         <p class="fs-5">
@@ -33,7 +36,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
 
   <div class="row">
     <div class="col-md-12" style="padding: 0 !important">
-      <div class="p-5 mb-4 bg-less-light rounded-10">
+      <div class="p-5 mb-4 bg-light-blue rounded-10">
         <h4 class="fw-bold">Informasi Request</h4>
       </div>
     </div>
@@ -41,9 +44,9 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
 {% endblock %}
 
 {% block right_content %}
-  <div class="p-5 mb-4 bg-less-light rounded-10">
+  <div class="p-5 mb-4 bg-light-blue rounded-10">
     <h5 class="fw-bold text-center mb-4">Notifications</h5>
-    <div class="bg-light p-3 rounded-5 mb-3">
+    <div class="bg-light-blue-lite p-4 rounded-10 mb-3">
       <p class="mb-0" style="font-weight: 500">
         Request anda terpenuhi.
       </p>
@@ -51,9 +54,9 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
         Silahkan cek page request anda untuk mendapatkan kontak donor
       </p>
     </div>
-    <div class="bg-light p-3 rounded-5 mb-3">
+    <div class="bg-light-blue-lite p-4 rounded-10 mb-3">
       <p class="mb-0" style="font-weight: 500">
-        Request anda berhasil dibuat.
+        Request anda terpenuhi.
       </p>
       <p class="mb-0">
         Silahkan cek page request anda untuk mendapatkan kontak donor
