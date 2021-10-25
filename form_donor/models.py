@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 class Pendonor(models.Model):
 	GENDER_CHOICES = [
-		('L', 'Laki-Laki'),
-		('P', 'Perempuan'),
+		('Laki-Laki', 'Laki-Laki'),
+		('Perempuan', 'Perempuan'),
 	]
 	BLOOD_TYPE_CHOICES = [
 		('A', 'A'),
@@ -13,8 +13,8 @@ class Pendonor(models.Model):
 		('O', 'O'),
 	]
 	RHESUS_CHOICES = [
-		('POSITIVE', '+'),
-		('NEGATIVE', '-'),
+		('+', '+'),
+		('-', '-'),
 	]
 	YES_OR_NO = [
 		(True, 'Ya'),
