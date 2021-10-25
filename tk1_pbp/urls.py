@@ -26,5 +26,6 @@ import lokasi_donor.urls as lokasi_donor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include(dashboard_pencari_donor)),
     path('', include(landing_page))
 ]
