@@ -6,7 +6,7 @@ from django.core import serializers
 from .models import Notifications
 
 # Create your views here.
-@login_required(login_url="/admin/login/?next=/dashboard")
+@login_required(login_url="/admin/login/")
 def index(request):
   return render(request, 'index_pencari_donor.html', { "user": request.user })
   
