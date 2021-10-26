@@ -1,0 +1,67 @@
+{% extends "bootstrap_skeleton.html" %}
+{% load static %}
+{% block head %}
+<style>
+	.container {
+		max-width: 1000px;
+		padding-top: 50px;
+		padding-right: 50px;
+		padding-bottom: 50px;
+		padding-left: 50px;
+		border-radius: 10px;
+		background-color: white;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+{% block title %} Registrasi Pendonor {% endblock %}
+
+{% block content %}
+<div class="container mt-5 shadow">
+	<div>
+		<form id='form_donor' action="" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% for field in form %}
+			{% if field.field.widget.input_type == 'checkbox'%}
+				<div class="form-check mb-5 mr-sm-2 mt-3">
+					{{ field }}
+					<label class="form-check-label" for="{{ field.auto_id }}">
+						{{ field.label }}
+					</label>
+				</div>
+			
+			{% else %}
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ field.label }}</label></strong>
+				{{ field }}
+			</div><br>
+			{% endif %}
+		{% endfor %}
+		
+		<div class="form-group mt-3">
+			<button type="submit" class="w-100 btn" style="background-color: #002954; color: white">Submit</button>
+		</div>
+		</form>
+	</div>
+</div>
+	<script>
+		$( document ).ready(function() {
+			
+			$('#form_donor').on('submit', function(e) {
+				var formData = new FormData($('#form_donor')[0]);
+				e.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url: "{% url 'form-donor' %}",
+					data: formData,
+					enctype: 'multipart/form-data',
+					processData: false,
+              		contentType: false,
+					success: function (data) {
+						console.log(data);
+					}
+				});
+			});
+		});
+	</script>
+{% endblock %}
