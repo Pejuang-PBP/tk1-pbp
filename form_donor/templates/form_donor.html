@@ -18,32 +18,73 @@
 
 {% block content %}
 <div class="container mt-5 shadow">
-	<div>
 		<form id='form_donor' action="" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
-		{% for field in form %}
-			{% if field.field.widget.input_type == 'checkbox'%}
-				<div class="form-check mb-5 mr-sm-2 mt-3">
-					{{ field }}
-					<label class="form-check-label" for="{{ field.auto_id }}">
-						{{ field.label }}
-					</label>
-				</div>
 			
-			{% else %}
 			<div class="form-group mt-1">
-				<strong><label for="{{ field.auto_id }}">{{ field.label }}</label></strong>
-				{{ field }}
+				<strong><label for="{{ field.auto_id }}">{{ form.nama_lengkap.label }}</label></strong>
+				{{ form.nama_lengkap }}
 			</div><br>
-			{% endif %}
-		{% endfor %}
-		
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ form.nik.label }}</label></strong>
+				{{ form.nik }}
+			</div><br>
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ form.no_hp.label }}</label></strong>
+				{{ form.no_hp }}
+			</div><br>
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ form.jenis_kelamin.label }}</label></strong>
+				{{ form.jenis_kelamin }}
+			</div><br>
+			
+			<div class="row">
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.tempat_lahir.label }}</label></strong>
+					{{ form.tempat_lahir }}
+				</div>
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.tanggal_lahir.label }}</label></strong>
+					{{ form.tanggal_lahir }}
+				</div>
+			</div><br>
+			
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ form.alamat.label }}</label></strong>
+				{{ form.alamat }}
+			</div><br>
+			
+			<div class="row">
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.golongan_darah.label }}</label></strong>
+					{{ form.golongan_darah }}
+				</div>
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.rhesus.label }}</label></strong>
+					{{ form.rhesus }}
+				</div>
+			</div><br>
+			
+			<div class="row">
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.berat_badan.label }}</label></strong>
+					{{ form.berat_badan }}
+				</div>
+				<div class="col">
+					<strong><label for="{{ field.auto_id }}">{{ form.tinggi_badan.label }}</label></strong>
+					{{ form.tinggi_badan }}
+				</div>
+			</div><br>
+			
+			<div class="form-group mt-1">
+				<strong><label for="{{ field.auto_id }}">{{ form.komorbid.label }}</label></strong>
+				{{ form.komorbid }}
+			</div><br>
 		<div class="form-group mt-3">
-			<button type="submit" class="w-100 btn" style="background-color: #002954; color: white">Submit</button>
+		<button type="submit" class="w-100 btn" style="background-color: #002954; color: white">Submit</button>
 		</div>
 		</form>
 	</div>
-</div>
 	<script>
 		$( document ).ready(function() {
 			
@@ -52,7 +93,7 @@
 				e.preventDefault();
 				$.ajax({
 					type: 'POST',
-					url: "{% url 'form-donor' %}",
+					url: "{% url 'index' %}",
 					data: formData,
 					enctype: 'multipart/form-data',
 					processData: false,

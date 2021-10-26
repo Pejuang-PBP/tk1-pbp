@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class request_donor(models.Model):
@@ -17,7 +18,7 @@ class request_donor(models.Model):
 		('-', '-'),
 	]
 	
-	#user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	nama_lengkap = models.CharField(max_length=100)
 	nik = models.IntegerField()
 	no_hp = models.CharField(max_length=12)

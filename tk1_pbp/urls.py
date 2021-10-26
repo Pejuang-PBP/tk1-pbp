@@ -37,5 +37,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(landing_page)),
     path('dashboard/', include(dashboard_pencari_donor)),
+    path('form-donor/', include(form_donor)),
     path('signout', signout)
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 from django import forms
-from data_models.models import request_donor
+from .models import request_donor
 from datetime import date, datetime
 
 """
@@ -51,9 +51,6 @@ class request_donor_form(forms.ModelForm):
 	komorbid = forms.CharField(validators=[komorbid_validator], label="Apakah Anda memiliki penyakit penyerta?")
 	komorbid.widget.attrs.update({'class':'form-control'})
 	
-	agreement = forms.BooleanField(label='Dengan ini saya menyatakan bersedia untuk menjadi pendonor plasma konvalesen', required=True)
-	agreement.widget.attrs.update({'class':'form-check-input', 'type':'checkbox'})
-	
 	nama_lengkap = forms.CharField(label="Nama Lengkap")
 	nama_lengkap.widget.attrs.update({'class':'form-control'})
 	
@@ -81,6 +78,5 @@ class request_donor_form(forms.ModelForm):
 	tinggi_badan.widget.attrs.update({'class':'form-control'})
 	
 	class Meta:
-		model = Pendonor
-		#exclude = ['user']
-		fields = '__all__'
+		model = request_donor
+		exclude = ['user']
