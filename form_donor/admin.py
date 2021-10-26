@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Pendonor
+from .models import request_donor
 # Register your models here.
-admin.site.register(Pendonor)
+admin.site.register(request_donor)

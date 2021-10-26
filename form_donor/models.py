@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Pendonor(models.Model):
+class request_donor(models.Model):
 	GENDER_CHOICES = [
 		('Laki-Laki', 'Laki-Laki'),
 		('Perempuan', 'Perempuan'),
@@ -20,7 +20,7 @@ class Pendonor(models.Model):
 	#user = models.ForeignKey(User, on_delete=models.CASCADE)
 	nama_lengkap = models.CharField(max_length=100)
 	nik = models.IntegerField()
-	no_hp = models.CharField(max_length=12, verbose_name="No. Hp")
+	no_hp = models.CharField(max_length=12)
 	jenis_kelamin = models.CharField(max_length=9, choices=GENDER_CHOICES)
 	tempat_lahir = models.CharField(max_length=100)
 	tanggal_lahir = models.DateField()
