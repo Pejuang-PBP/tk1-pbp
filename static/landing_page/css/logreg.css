@@ -9,16 +9,10 @@ body {
     background-color: #DCEAF9;
 }
 
-.content {
-    max-height: 500px;
-
-}
-
 .left-box, .right-box {
     background-color: white;
     border-radius: 7%;
     border: 0.15rem solid;
-    max-height: 500px;
 }
 
 .left-box {
@@ -28,10 +22,9 @@ body {
 
 .right-box {
     border-color: #CC1728;
-    text-align: center;
 }
 .right-box > div {
-    margin: 12% 15%;
+    margin: 10% 15%;
 }
 .right-box input {
     background-color: #FAFAFA;
@@ -48,4 +41,10 @@ body {
 
 .right-box > div a:hover {
     border-bottom: thin solid #CC1728;
+}
+
+
+.form-error {
+    font-size: 0.8rem;
+    color: rgb(61, 61, 61);
 }

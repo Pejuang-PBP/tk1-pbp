@@ -12,11 +12,11 @@
 
 {% block content %}
 <div class="container-fluid text-center mt-3 header">
-  <a class="text-decoration-none" href="{% url 'home' %}">
     <h1 class="display-1">
-      <span class="text-red">Konva</span><span class="text-crimson">Search</span>
+      <a class="text-decoration-none" href="{% url 'home' %}">
+        <span class="text-red">Konva</span><span class="text-crimson">Search</span>
+      </a>
     </h1>
-  </a>
 </div>
 
 
@@ -28,22 +28,33 @@
       <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
-            <input type="text" class="form-control" id="Username" placeholder="Username">
+          <input name="username" type="text" class="form-control" id="Username" placeholder="Username" required>
+          <span class="form-error">{{ form.username.errors }}</span>
         </div>
         <div class="mb-3">
-            <input type="email" class="form-control" id="Email" placeholder="Email Address">
+          <input name="email" type="email" class="form-control" id="Email" placeholder="Email Address" required>
+          <span class="form-error">{{ form.email.errors }}</span>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" id="Password1" placeholder="Password">
-          <i class="input-group-text text-crimson bi bi-eye-slash show-hide"></i>
+        <div class="mb-3">
+          <div class="input-group">
+            <input name="password1" type="password" class="form-control" id="Password1" placeholder="Password" required>
+            <i class="input-group-text text-crimson bi bi-eye-slash show-hide"></i>
+          </div>
+          <span class="form-error">{{ form.password1.errors }}</span>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" id="Password2" placeholder="Confirm Password">
-          <i class="input-group-text text-crimson bi bi-eye-slash show-hide"></i>
+        
+        <div class="mb-3">
+          <div class="input-group">
+            <input name="password2" type="password" class="form-control" id="Password2" placeholder="Confirm Password" required>
+            <i class="input-group-text text-crimson bi bi-eye-slash show-hide"></i>
+          </div>
+          <span class="form-error">{{ form.password2.errors }}</span>
         </div>
         <button type="submit" class="btn btn-primary mb-3 mt-3 w-100 submit-btn">Register</button>
       </form>
-      <a class="text-decoration-none text-black" href="{% url 'login' %}">Sudah memiliki akun?</a>
+      <div class="text-center">
+        <a class="text-decoration-none text-black" href="{% url 'login_page' %}">Sudah memiliki akun?</a>
+      </div>
     </div>
   </div>
 </div>

@@ -22,9 +22,23 @@
     </button>
     <div class="navlink-group collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link fs-4 text-decoration-none" href="#">Home</a>
-        <a class="nav-link fs-4 text-decoration-none" href="#">FAQ</a>
-        <a class="nav-link fs-4 text-decoration-none" href="{% url 'login' %}">Login</a>
+        <a class="nav-link fs-4 text-decoration-none me-4" href="{% url 'home' %}">Home</a>
+        <a class="nav-link fs-4 text-decoration-none me-4" href="#">FAQ</a>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link fs-4 dropdown-toggle me-2" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.get_username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="fs-6 dropdown-item" href="#">Dashboard</a></li>
+            <li><a class="fs-6 dropdown-item text-crimson" href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </li>
+
+        {% else %}
+        <a class="nav-link fs-4 text-decoration-none me-2" href="{% url 'login_page' %}">Login</a>
+        {% endif %}
       </div>
     </div>
   </div>
