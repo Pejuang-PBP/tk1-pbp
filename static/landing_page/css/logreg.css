@@ -1,0 +1,51 @@
+.text-red {
+    color:#FB0000
+}
+.text-crimson {
+    color: #CC1728
+}
+
+body {
+    background-color: #DCEAF9;
+}
+
+.content {
+    max-height: 500px;
+
+}
+
+.left-box, .right-box {
+    background-color: white;
+    border-radius: 7%;
+    border: 0.15rem solid;
+    max-height: 500px;
+}
+
+.left-box {
+    border-color: #FB0000;
+    
+}
+
+.right-box {
+    border-color: #CC1728;
+    text-align: center;
+}
+.right-box > div {
+    margin: 12% 15%;
+}
+.right-box input {
+    background-color: #FAFAFA;
+}
+
+.submit-btn {
+    background-color: #CC1728;
+    border: none;
+    font-size: 1.2rem;
+}
+.submit-btn:hover {
+    background-color: #FB0000;
+}
+
+.right-box > div a:hover {
+    border-bottom: thin solid #CC1728;
+}

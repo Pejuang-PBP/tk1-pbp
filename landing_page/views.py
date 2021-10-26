@@ -8,3 +8,11 @@ def index(request):
 
   response = {"slides": slides, "media_url": settings.MEDIA_URL}
   return render(request, 'index.html', response)
+
+
+def signup(request):
+  return render(request, 'signup_page.html')
+
+
+def login(request):
+  return render(request, "login_page.html")
