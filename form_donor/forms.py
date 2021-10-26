@@ -1,5 +1,5 @@
 from django import forms
-from data_models.models import Pendonor
+from data_models.models import request_donor
 from datetime import date, datetime
 
 """
@@ -13,7 +13,20 @@ KOMORBID_CHOICES = [
 	('Penyakit HIV','Penyakit HIV')
 ]
 """
-
+GENDER_CHOICES = [
+	('Laki-Laki', 'Laki-Laki'),
+	('Perempuan', 'Perempuan'),
+]
+BLOOD_TYPE_CHOICES = [
+	('A', 'A'),
+	('B', 'B'),
+	('AB', 'AB'),
+	('O', 'O'),
+]
+RHESUS_CHOICES = [
+	('+', '+'),
+	('-', '-'),
+]
 def age_validator(val):
 	curr_year = int(datetime.now().strftime("%Y"))
 	diff = curr_year-val.year
@@ -29,10 +42,7 @@ def komorbid_validator(val):
 		raise forms.ValidationError("Pendonor diharuskan tidak memiliki penyakit penyerta bersifat kronis maupun penyakit yang dapat menular melalui darah.")
 		
 
-class PendonorForm(forms.ModelForm):
-	agreement = forms.BooleanField(label='Dengan ini saya menyatakan bersedia untuk menjadi pendonor plasma konvalesen', required=True)
-	agreement.widget.attrs.update({'class':'form-check-input', 'type':'checkbox'})
-	
+class request_donor_form(forms.ModelForm):
 	tanggal_lahir = forms.DateField(validators=[age_validator], widget=forms.DateTimeInput(attrs={'type':'date','class':'form-control'}))
 	
 	berat_badan = forms.IntegerField(validators=[weight_validator])
@@ -41,18 +51,36 @@ class PendonorForm(forms.ModelForm):
 	komorbid = forms.CharField(validators=[komorbid_validator], label="Apakah Anda memiliki penyakit penyerta?")
 	komorbid.widget.attrs.update({'class':'form-control'})
 	
+	agreement = forms.BooleanField(label='Dengan ini saya menyatakan bersedia untuk menjadi pendonor plasma konvalesen', required=True)
+	agreement.widget.attrs.update({'class':'form-check-input', 'type':'checkbox'})
+	
+	nama_lengkap = forms.CharField(label="Nama Lengkap")
+	nama_lengkap.widget.attrs.update({'class':'form-control'})
+	
+	nik = forms.IntegerField(label='NIK')
+	nik.widget.attrs.update({'class':'form-control'})
+	
+	no_hp = forms.CharField(label="Nomor HP")
+	no_hp.widget.attrs.update({'class':'form-control'})
+	
+	jenis_kelamin = forms.ChoiceField(choices = GENDER_CHOICES, label="Jenis Kelamin")
+	jenis_kelamin.widget.attrs.update({'class':'form-control'})
+	
+	tempat_lahir = forms.CharField(label="Tempat Lahir")
+	tempat_lahir.widget.attrs.update({'class':'form-control'})
+	
+	alamat = forms.CharField(label="Alamat", widget=forms.Textarea(attrs={'class':'form-control', 'rows':3}))
+	
+	golongan_darah = forms.ChoiceField(choices = BLOOD_TYPE_CHOICES, label="Golongan Darah")
+	golongan_darah.widget.attrs.update({'class':'form-control'})
+	
+	rhesus = forms.ChoiceField(choices = RHESUS_CHOICES, label="Rhesus")
+	rhesus.widget.attrs.update({'class':'form-control'})
+	
+	tinggi_badan = forms.IntegerField(label='Tinggi Badan')
+	tinggi_badan.widget.attrs.update({'class':'form-control'})
+	
 	class Meta:
 		model = Pendonor
 		#exclude = ['user']
 		fields = '__all__'
-		widgets = {
-					'nama_lengkap': forms.TextInput(attrs={'class':'form-control'}),
-					'nik': forms.NumberInput(attrs={'class':'form-control'}),
-					'no_hp': forms.NumberInput(attrs={'class':'form-control'}),
-					'jenis_kelamin': forms.Select(attrs={'class':'form-control'}),
-					'tempat_lahir': forms.TextInput(attrs={'class':'form-control'}),
-					'alamat': forms.Textarea(attrs={'class':'form-control'}),
-					'golongan_darah': forms.Select(attrs={'class':'form-control'}),
-					'rhesus': forms.Select(attrs={'class':'form-control'}),
-					'tinggi_badan': forms.NumberInput(attrs={'class':'form-control'}),
-				  }
