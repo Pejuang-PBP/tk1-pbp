@@ -4,6 +4,7 @@ from .forms import PendonorForm
 from django.core import serializers
 from .models import Pendonor
 from django.http.response import HttpResponse
+from django.http import JsonResponse
 
 """
 @login_required(login_url='/admin/login/')
