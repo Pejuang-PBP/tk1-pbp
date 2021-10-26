@@ -23,8 +23,6 @@ def registrasi_pendonor(request):
 			return render(request, "form_donor.html", {'form': PendonorForm()})
 	return render(request, "fail.html")
 """
-def validasi_pendonor(obj):
-	return 60 >= obj.usia >= 18 and obj.berat_badan >= 55 and not obj.gejala_covid and not obj.riwayat_transfusi and not obj.kehamilan
 
 @login_required(login_url='/admin/login/')
 def get_all_pendonor(request):
