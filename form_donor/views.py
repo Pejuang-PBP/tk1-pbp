@@ -9,18 +9,17 @@ from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def index(request):
-	if not request_donor.objects.filter(user=request.user):
-		if request.method == 'POST':
-			form = request_donor_form(request.POST)
-			if form.is_valid():
-				obj = form.instance
-				obj.user = request.user
-				obj.save()
-				return JsonResponse({'status':'ok', 'msg':'Your form has been submitted successfully'})
-			else:
-				return JsonResponse({'status':'error', 'msg':form.errors})
-			
-		else:
-			return render(request, "form_donor.html", {'form': request_donor_form()})
-	return render(request, "fail.html")
+    if not request_donor.objects.filter(user=request.user):
+        if request.method == 'POST':
+            form = request_donor_form(request.POST)
+            if form.is_valid():
+                obj = form.instance
+                obj.user = request.user
+                obj.save()
+                return JsonResponse({'status': 'ok', 'msg': 'Your form has been submitted successfully'})
+            else:
+                return JsonResponse({'status': 'error', 'msg': form.errors})
 
+        else:
+            return render(request, "form_donor.html", {'form': request_donor_form()})
+    return render(request, "fail.html")
