@@ -33,42 +33,24 @@ const initializeInformationFields = () => {
     </div>
   `;
 
-  document.getElementById("button-container").innerHTML = `
-    <button
-      onclick="document.dispatchEvent(new CustomEvent('delete:request'))"
-      class="btn btn-danger me-3"
-    >
-      Batalkan
-    </button>
-    <button class="btn btn-primary position-relative">
-      Calon Donor
-      <span
-        class="
-          position-absolute
-          top-0
-          start-100
-          translate-middle
-          badge
-          rounded-pill
-          bg-danger
-        "
-      >
-        0
-        <span class="visually-hidden">unread messages</span>
-      </span>
-    </button>
-  `;
+  document.getElementById("request-button-container").classList.add("d-flex");
+  document
+    .getElementById("request-button-container")
+    .classList.remove("d-none");
+  document.getElementById("create-button-container").classList.add("d-none");
+  document.getElementById("create-button-container").classList.remove("d-flex");
 };
 
 const resetInformationFields = () => {
   document.getElementById("request-information").innerHTML =
     "Anda belum memiliki request yang aktif. Silahkan membuat request baru dengan mengklik tombol dibawah.";
 
-  document.getElementById("button-container").innerHTML = `
-    <button class="btn btn-success position-relative">
-      Create Request
-    </button>
-  `;
+  document.getElementById("create-button-container").classList.add("d-flex");
+  document.getElementById("create-button-container").classList.remove("d-none");
+  document.getElementById("request-button-container").classList.add("d-none");
+  document
+    .getElementById("request-button-container")
+    .classList.remove("d-flex");
 };
 
 const updateRequest = () => {
@@ -102,11 +84,6 @@ const updateRequest = () => {
         document.getElementById("request-aktif").style = "display: block;";
       } else {
         resetInformationFields();
-        nama_pasien.setAttribute("value", "");
-        nik.setAttribute("value", "");
-        nomor_telepon.setAttribute("value", "");
-        rhesus.setAttribute("value", "");
-        golongan_darah.setAttribute("value", "");
 
         document.getElementById("request-aktif").style = "display: none;";
       }
