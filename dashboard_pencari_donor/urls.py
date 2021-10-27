@@ -3,6 +3,6 @@ from .views import index, get_notifications, get_request
 
 urlpatterns = [
   path('', index),
-  path('get/notifications', get_notifications),
-  path('get/request', get_request)
+  path('api/notifications', get_notifications),
+  path('api/request', get_request),
 ]

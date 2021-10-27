@@ -11,7 +11,7 @@ const template = (title, message, date) => `
         </p>
       </div>
     `;
-fetch("/dashboard/get/notifications")
+fetch("/dashboard/api/notifications")
   .then((res) => res.json())
   .then((items) => {
     let inner = "";
@@ -25,7 +25,7 @@ fetch("/dashboard/get/notifications")
     document.getElementById("notifications").innerHTML = inner;
   });
 setInterval(() => {
-  fetch("/dashboard/get/notifications")
+  fetch("/dashboard/api/notifications")
     .then((res) => res.json())
     .then((items) => {
       let inner = "";
