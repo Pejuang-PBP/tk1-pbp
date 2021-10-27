@@ -17,7 +17,7 @@ def index(request):
 def signup_page(request):
   if request.method == "POST":
     form = NewUserForm(request.POST)
-    print(form.is_valid())
+    
     if form.is_valid():
       user = form.save()
       login(request, user)
