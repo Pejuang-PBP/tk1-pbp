@@ -53,6 +53,20 @@ const resetInformationFields = () => {
     .classList.remove("d-flex");
 };
 
+const setFields = (item) => {
+  const nama_pasien = document.getElementById("nama_pasien");
+  const nik = document.getElementById("nik");
+  const nomor_telepon = document.getElementById("nomor_telepon");
+  const rhesus = document.getElementById("rhesus");
+  const golongan_darah = document.getElementById("golongan_darah");
+
+  nama_pasien.setAttribute("value", item.fields.nama);
+  nik.setAttribute("value", item.fields.nomor_induk);
+  nomor_telepon.setAttribute("value", item.fields.nomor_hp);
+  golongan_darah.setAttribute("value", item.fields.golongan_darah);
+  rhesus.setAttribute("value", item.fields.rhesus);
+};
+
 const updateRequest = () => {
   fetch("/dashboard/api/request")
     .then((res) => res.json())
@@ -61,17 +75,7 @@ const updateRequest = () => {
         const item = data[0];
 
         initializeInformationFields();
-        const nama_pasien = document.getElementById("nama_pasien");
-        const nik = document.getElementById("nik");
-        const nomor_telepon = document.getElementById("nomor_telepon");
-        const rhesus = document.getElementById("rhesus");
-        const golongan_darah = document.getElementById("golongan_darah");
-
-        nama_pasien.setAttribute("value", item.fields.nama);
-        nik.setAttribute("value", item.fields.nomor_induk);
-        nomor_telepon.setAttribute("value", item.fields.nomor_hp);
-        golongan_darah.setAttribute("value", item.fields.golongan_darah);
-        rhesus.setAttribute("value", item.fields.rhesus);
+        setFields(item);
 
         document.addEventListener("delete:request", (e) => {
           fetch(`/dashboard/api/request?id=${item.pk}`, {
@@ -84,7 +88,6 @@ const updateRequest = () => {
         document.getElementById("request-aktif").style = "display: block;";
       } else {
         resetInformationFields();
-
         document.getElementById("request-aktif").style = "display: none;";
       }
     });

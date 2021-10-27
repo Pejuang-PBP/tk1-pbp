@@ -47,8 +47,10 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
         class="w-100 d-none justify-content-center"
       >
         <button
-          onclick="document.dispatchEvent(new CustomEvent('delete:request'))"
           class="btn btn-danger me-3"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal"
         >
           Batalkan
         </button>
@@ -94,6 +96,39 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   </div>
 </div>
 {% endblock %} {% block scripts %}
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Apakah anda yakin ingin membatalkan request ini?
+        </h5>
+      </div>
+      <div class="modal-body">Aksi ini tidak dapat diulangi.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Tidak
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onClick="document.dispatchEvent(new CustomEvent('delete:request'))"
+          data-bs-dismiss="modal"
+        >
+          Iya
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- AJAX call to fetch and render notifications -->
 <script src="{% static 'dashboard/scripts/pencari_donor/notifications.js' %}"></script>
 <script src="{% static 'dashboard/scripts/pencari_donor/request.js' %}"></script>
