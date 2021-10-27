@@ -32,7 +32,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="fs-6 dropdown-item" href="#">Dashboard</a></li>
-            <li><a class="fs-6 dropdown-item text-crimson" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="fs-6 dropdown-item text-crimson" href="/signout">Logout</a></li>
           </ul>
         </li>
 
@@ -46,7 +46,7 @@
 
 
 <!-- Banner -->
-<div class="container-fluid banner">
+<div class="container-fluid banner bg-gainsboro">
   <div class="row" id="banner">
     <div class="col-1"></div>
 
@@ -121,6 +121,30 @@
 </div>
 
 
+<!-- Donors & Recipients Counter -->
+<div class="container-fluid bg-linkwater counter">
+  <div class="row me-3 ms-3">
+    <div class="col-md">
+      <p class="text-red fs-3">Pendonor</p>
+      <div class="progress">
+        <div id="donor-bar" class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <p class="fs-5"><span class="text-red" id="donor-count">X</span> orang ingin mendonorkan plasmanya</p>
+    </div>
+
+    <div class="col-2 d-none d-md-block"></div>
+
+    <div class="col-md">
+      <p class="text-crimson fs-3">Pencari Donor</p>
+      <div class="progress">
+        <div id="recipient-bar" class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <p class="fs-5"><span class="text-crimson" id="recipient-count">X</span> orang sedang mencari donor plasma</p>
+    </div>
+  </div>
+</div>
+
+
 <!-- Footer -->
 <div class="container-fluid footer">
   <div class="row">
@@ -134,5 +158,6 @@
 </div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'landing_page/js/landing.js' %}"></script>
 {% endblock %}

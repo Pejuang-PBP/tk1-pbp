@@ -25,7 +25,7 @@
   
   <div class="container-fluid m-2 right-box">
     <div class="ms-5 me-5">
-      <form method="POST">
+      <form method="POST" noval>
         {% csrf_token %}
         <div class="mb-3">
           <input name="username" type="text" class="form-control" id="Username" placeholder="Username" required>
