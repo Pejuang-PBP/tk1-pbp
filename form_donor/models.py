@@ -17,6 +17,10 @@ class request_donor(models.Model):
 		('+', '+'),
 		('-', '-'),
 	]
+	YES_OR_NO = [
+		('Ya', 'Ya'),
+		('Tidak', 'Tidak'),
+	]
 	
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	nama_lengkap = models.CharField(max_length=100)
@@ -30,4 +34,4 @@ class request_donor(models.Model):
 	rhesus = models.CharField(max_length=8, choices=RHESUS_CHOICES)
 	berat_badan = models.IntegerField()
 	tinggi_badan = models.IntegerField()
-	komorbid = models.CharField(max_length=100)
+	komorbid = models.CharField(max_length=5, choices=YES_OR_NO)

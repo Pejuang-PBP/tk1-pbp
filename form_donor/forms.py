@@ -1,18 +1,8 @@
 from django import forms
 from .models import request_donor
 from datetime import date, datetime
+from django.core.validators import RegexValidator
 
-"""
-KOMORBID_CHOICES = [
-	('Penyakit Jantung', 'Penyakit Jantung'),
-	('Penyakit Hipertensi','Penyakit Hipertensi'),
-	('Penyakit Paru-Paru', 'Penyakit Paru-Paru'),
-	('Penyakit Hati (Liver)', 'Penyakit Hati (Liver)'),
-	('Penyakit Ginjal', 'Penyakit Ginjal'),
-	('Penyakit Kronik atau Neuromuskular','Penyakit Kronik atau Neuromuskular'),
-	('Penyakit HIV','Penyakit HIV')
-]
-"""
 GENDER_CHOICES = [
 	('Laki-Laki', 'Laki-Laki'),
 	('Perempuan', 'Perempuan'),
@@ -27,6 +17,13 @@ RHESUS_CHOICES = [
 	('+', '+'),
 	('-', '-'),
 ]
+YES_OR_NO = [
+	('Ya', 'Ya'),
+	('Tidak', 'Tidak'),
+]
+
+nohp_validator = RegexValidator(regex='^[0-9]*$', message="No HP hanya terdiri dari angka.")
+
 def age_validator(val):
 	curr_year = int(datetime.now().strftime("%Y"))
 	diff = curr_year-val.year
@@ -36,10 +33,14 @@ def age_validator(val):
 def weight_validator(val):
 	if val < 55:
 		raise forms.ValidationError("Berat badan minimal pendonor adalah 55 kg.")
+		
+def nik_validator(val):
+	if len(str(val)) != 16:
+		raise forms.ValidationError("NIK harus terdiri dari 16 angka")
 
 def komorbid_validator(val):
-	if val:
-		raise forms.ValidationError("Pendonor diharuskan tidak memiliki penyakit penyerta bersifat kronis maupun penyakit yang dapat menular melalui darah.")
+	if val != 'Tidak':
+		raise forms.ValidationError("Pendonor disyaratkan tidak memiliki penyakit penyerta bersifat kronis maupun penyakit yang dapat menular melalui darah.")
 		
 
 class request_donor_form(forms.ModelForm):
@@ -48,16 +49,15 @@ class request_donor_form(forms.ModelForm):
 	berat_badan = forms.IntegerField(validators=[weight_validator])
 	berat_badan.widget.attrs.update({'class':'form-control'})
 	
-	komorbid = forms.CharField(validators=[komorbid_validator], label="Apakah Anda memiliki penyakit penyerta?")
-	komorbid.widget.attrs.update({'class':'form-control'})
+	komorbid = forms.ChoiceField(choices = YES_OR_NO, validators=[komorbid_validator], label="Apakah Anda memiliki penyakit penyerta?", widget=forms.RadioSelect)
 	
 	nama_lengkap = forms.CharField(label="Nama Lengkap")
 	nama_lengkap.widget.attrs.update({'class':'form-control'})
 	
-	nik = forms.IntegerField(label='NIK')
+	nik = forms.IntegerField(validators=[nik_validator], label='NIK')
 	nik.widget.attrs.update({'class':'form-control'})
 	
-	no_hp = forms.CharField(label="Nomor HP")
+	no_hp = forms.CharField(validators=[nohp_validator], label="Nomor HP")
 	no_hp.widget.attrs.update({'class':'form-control'})
 	
 	jenis_kelamin = forms.ChoiceField(choices = GENDER_CHOICES, label="Jenis Kelamin")
