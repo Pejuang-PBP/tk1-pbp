@@ -23,7 +23,7 @@ class request_pencari_donor(models.Model):
         ('HIGH', 'HIGH')
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nama = models.CharField(max_length=100)
     nomor_induk = models.PositiveIntegerField()
     nomor_hp = models.CharField(max_length=12)
