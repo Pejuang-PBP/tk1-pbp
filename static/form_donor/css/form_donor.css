@@ -1,0 +1,52 @@
+.container {
+	max-width: 1000px;
+	padding-top: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
+	padding-left: 50px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#ct2{
+	max-width: 1000px;
+	padding-top: 50px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	border-radius: 10px;
+	background-color: #DCEAF9;
+}
+
+.circle{
+	border-radius: 50%;
+	background: white;
+	width: 75px;
+	height: 75px;
+	margin: auto;	
+}
+
+.btn-success{
+	width: 95px;
+	height: 45px;
+	background: #002954;
+}
+	
+#success-modal-header{
+	background: #002954;
+	height: 140px
+}
+
+body{
+	background: #DCEAF9;
+}
+	
+.submit-btn:hover{
+	background-color: #4863A0;
+	color: white;
+}
+	
+.submit-btn{
+	background-color: #203B61; 
+	color: white;
+}

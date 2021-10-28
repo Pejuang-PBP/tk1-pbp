@@ -22,7 +22,7 @@ class request_donor(models.Model):
 		('Tidak', 'Tidak'),
 	]
 	
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	nama_lengkap = models.CharField(max_length=100)
 	nik = models.IntegerField()
 	no_hp = models.CharField(max_length=12)
