@@ -42,4 +42,5 @@ urlpatterns = [
     path("form-donor/", include(form_donor)),
     path("form-pencari-donor/", include(form_pencari_donor)),
     path("signout", signout),
+    path("lokasi-donor/", include(lokasi_donor)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

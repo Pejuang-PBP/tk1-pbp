@@ -14,49 +14,82 @@
     />
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#myP").hide();
-        $("#myButton").click(function () {
-          $("#myP").toggle();
+        $(".card-body").hide();
+        $(".card-header").click(function () {
+          $(".card-body").toggle();
         });
       });
     </script>
+    <style type="text/css">
+      hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid #002954;
+      }
+
+      .btn-primary {
+        background-color: #af0011;
+      }
+
+      .page-header {
+        margin-bottom: 50px;
+        padding: 40px 10px;
+        border-bottom: 5px solid #002954;
+        margin-top: 10px;
+        background: #c2dfff
+          url("https://asset-a.grid.id/crop/0x0:0x0/945x630/photo/2021/01/31/2736410jpg-20210131121959.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+      }
+    </style>
     <title>TK PBP</title>
   </head>
   <body>
-    <div id="div1"><h2>Apa itu UTD?</h2></div>
+    <div>{% include "navbar.html" %}</div>
     <br />
-    <button id="myButton">Penjelasan</button>
+
+    <div class="page-header"></div>
+
+    <div class="card">
+      <div class="card-header">Apa itu UTD?(Klik!)</div>
+      <div class="card-body">
+        <h5 class="card-title">UTD</h5>
+        <p class="card-text">
+          Unit Transfusi Darah (UTD) adalah salah satu unit kerja yang ada di
+          PMI yang memfasilitasi pelayanan kesehatan yang menyelenggarakan donor
+          darah, penyediaan darah, dan pendistribusian darah. Tugas dan fungsi
+          utamanya ialah meningkatkan derajat kesehatan melalui pengelolaan
+          darah yang berkualitas, mewujudkan pelayanan penyediaan darah yang
+          aman, tepat waktu, terjangkau dan berkesinambungan.
+          <br />
+          Para pendonor dipersilakan untuk melakukan tahapan-tahapan berikut
+          secara berurut di salah satu UTD yang tersedia:
+          <br />
+          1. Tahap registrasi
+          <br />
+          2. Tahap Pemeriksaan Pendahuluan
+          <br />
+          3. Tahap Pemeriksaan Kesehatan oleh Dokter
+          <br />
+          4. Tahap Pengambilan Darah Donor
+          <br />
+          5. Tahap Administrasi
+          <br />
+        </p>
+      </div>
+    </div>
     <br />
     <br />
-    <p id="myP">
-      Unit Transfusi Darah (UTD) adalah salah satu unit kerja yang ada di PMI
-      yang memfasilitasi pelayanan kesehatan yang menyelenggarakan donor darah,
-      penyediaan darah, dan pendistribusian darah. Tugas dan fungsi utamanya
-      ialah meningkatkan derajat kesehatan melalui pengelolaan darah yang
-      berkualitas, mewujudkan pelayanan penyediaan darah yang aman, tepat waktu,
-      terjangkau dan berkesinambungan.
-      <br />
-      Para pendonor dipersilakan untuk melakukan tahapan-tahapan berikut secara
-      berurut di salah satu UTD yang tersedia:
-      <br />
-      1. Tahap registrasi
-      <br />
-      2. Tahap Pemeriksaan Pendahuluan
-      <br />
-      3. Tahap Pemeriksaan Kesehatan oleh Dokter
-      <br />
-      4. Tahap Pengambilan Darah Donor
-      <br />
-      5. Tahap Administrasi
-      <br />
-    </p>
 
     <form method="get">
       {{myFilter.form}}
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
+    <br />
     <table class="table" id="UTDs">
-      <thead class="thead-dark">
+      <thead class="thead-dark" id="myThead">
         <tr>
           <th scope="col">Nama</th>
           <th scope="col">Kota</th>
@@ -70,12 +103,15 @@
         <tr>
           <td>{{data.nama}}</td>
           <td>{{data.kota}}</td>
-          <td>{{data.alamat}</td>
+          <td>{{data.alamat}}</td>
           <td>{{data.jamOperasi}}</td>
           <td>{{data.nomorTelepon}}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    <hr />
+
+    <div>{% include "footer.html" %}</div>
   </body>
 </html>
