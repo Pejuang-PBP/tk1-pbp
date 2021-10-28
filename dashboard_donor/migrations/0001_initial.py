@@ -8,18 +8,25 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Notifications',
+            name="Notifications",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=50)),
-                ('message', models.CharField(max_length=1000)),
-                ('timestamp', models.DateTimeField(default=datetime.date.today)),
-                ('status', models.CharField(max_length=20)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=50)),
+                ("message", models.CharField(max_length=1000)),
+                ("timestamp", models.DateTimeField(default=datetime.date.today)),
+                ("status", models.CharField(max_length=20)),
             ],
         ),
     ]

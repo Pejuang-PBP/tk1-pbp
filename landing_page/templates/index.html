@@ -1,19 +1,13 @@
-{% extends "bootstrap_skeleton.html" %}
-
-{% load static %}
-
-{% block title %} KonvaSearch {% endblock %} 
-
-{% block head %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-<link href="{% static 'landing_page/css/landing.css' %}" rel="stylesheet">
-{% endblock %} 
-
-
-{% block content %}
+{% extends "bootstrap_skeleton.html" %} {% load static %} {% block title %}
+KonvaSearch {% endblock %} {% block head %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+/>
+<link href="{% static 'landing_page/css/landing.css' %}" rel="stylesheet" />
+{% endblock %} {% block content %}
 <!-- NavBar -->
 {% include "navbar.html" %}
-
 
 <!-- Banner -->
 <div class="container-fluid banner bg-gainsboro">
@@ -22,24 +16,33 @@
 
     <div class="col-4 banner-text">
       <h1 class="display-1 text-wrap">Donasi Plasma Konvalesen</h1>
-      
-      <a href="/form-donor" role="button" class="btn btn-lg text-ronchi donate-btn">
+
+      <a
+        href="/form-donor"
+        role="button"
+        class="btn btn-lg text-ronchi donate-btn"
+      >
         <i class="bi bi-plus-lg"></i> Donasi
       </a>
     </div>
 
     <div class="col-7 banner-img">
-      <img class="img-fluid d-none d-md-block" src="{% static 'landing_page/img/blood-crimson.png' %}">
+      <img
+        class="img-fluid d-none d-md-block"
+        src="{% static 'landing_page/img/blood-crimson.png' %}"
+      />
     </div>
   </div>
 </div>
 
-
 <!-- Slides -->
 <div class="container-fluid bg-linkwater">
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div
+    id="carouselExampleControls"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
     <div class="carousel-inner">
-
       {% for slide in slides %}
       <div class="carousel-item" data-bs-interval="5000">
         <!-- Small Screen -->
@@ -47,7 +50,7 @@
           <div class="col-2"></div>
           <div class="col-8">
             <h1 class="display-4">{{ slide.headerText }}</h1>
-            <hr>
+            <hr />
             <p class="fs-5">{{ slide.descText }}</p>
           </div>
           <div class="col-2"></div>
@@ -57,11 +60,15 @@
         <div class="row normal-slide">
           <div class="col-1"></div>
           <div class="col-6">
-            <h1 class="display-4">{{ slide.headerText}}</h1><br/>
-            <p class="fs-5"> {{ slide.descText }} </p>
+            <h1 class="display-4">{{ slide.headerText}}</h1>
+            <br />
+            <p class="fs-5">{{ slide.descText }}</p>
           </div>
           <div class="col-4">
-            <img class="img-fluid d-none d-md-block" src="{{ media_url }}{{ slide.bgImage }}">
+            <img
+              class="img-fluid d-none d-md-block"
+              src="{{ media_url }}{{ slide.bgImage }}"
+            />
           </div>
           <div class="col-1"></div>
         </div>
@@ -69,27 +76,35 @@
 
       {% empty %}
       <div class="carousel-item active">
-        <div class="row ">
+        <div class="row">
           <div class="col-12 empty">
             <p class="fs-1 text-center">Empty</p>
           </div>
         </div>
       </div>
       {% endfor %}
-
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
 </div>
-
 
 <!-- Donors & Recipients Counter -->
 <div class="container-fluid bg-linkwater counter">
@@ -97,9 +112,20 @@
     <div class="col-md">
       <p class="text-red fs-3">Pendonor</p>
       <div class="progress">
-        <div id="donor-bar" class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        <div
+          id="donor-bar"
+          class="progress-bar"
+          role="progressbar"
+          style="width: 30%"
+          aria-valuenow="30"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
       </div>
-      <p class="fs-5"><span class="text-red" id="donor-count">X</span> orang ingin mendonorkan plasmanya</p>
+      <p class="fs-5">
+        <span class="text-red" id="donor-count">X</span> orang ingin mendonorkan
+        plasmanya
+      </p>
     </div>
 
     <div class="col-2 d-none d-md-block"></div>
@@ -107,17 +133,26 @@
     <div class="col-md">
       <p class="text-crimson fs-3">Pencari Donor</p>
       <div class="progress">
-        <div id="recipient-bar" class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        <div
+          id="recipient-bar"
+          class="progress-bar"
+          role="progressbar"
+          style="width: 30%"
+          aria-valuenow="30"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
       </div>
-      <p class="fs-5"><span class="text-crimson" id="recipient-count">X</span> orang sedang mencari donor plasma</p>
+      <p class="fs-5">
+        <span class="text-crimson" id="recipient-count">X</span> orang sedang
+        mencari donor plasma
+      </p>
     </div>
   </div>
 </div>
 
-
 <!-- Footer -->
 {% include "footer.html" %}
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'landing_page/js/landing.js' %}"></script>
