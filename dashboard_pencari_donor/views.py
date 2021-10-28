@@ -12,7 +12,7 @@ def not_authenticated():
   return HttpResponse("You are not logged in.", content_type="text/plain")
 
 # Create your views here.
-@login_required(login_url="/admin/login/")
+@login_required(login_url="/login")
 def index(request):
   return render(request, 'index_pencari_donor.html', { "user": request.user })
   
