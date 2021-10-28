@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http.response import HttpResponseRedirect
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,6 +26,14 @@ import faq.urls as faq
 import form_donor.urls as form_donor
 import form_pencari_donor.urls as form_pencari_donor
 import lokasi_donor.urls as lokasi_donor
+
+from django.contrib.auth import logout
+
+
+def signout(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

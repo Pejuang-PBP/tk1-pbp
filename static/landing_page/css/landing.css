@@ -10,6 +10,9 @@
 .bg-linkwater {
     background-color: #DCEAF9;
 }
+.bg-gainsboro {
+    background-color: #D1DEEC;
+}
 
 
 
@@ -17,14 +20,9 @@
 .navlink-group {
     justify-content: right;
 }
-.navbar-nav > a{
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
 
 
 .banner {
-    background-color: #d1deec;
     padding-top: 5%;
     padding-bottom: 5%;
 }
@@ -71,6 +69,11 @@
     padding-top: 10%;
     padding-bottom: 10%;
     display: none;
+}
+
+
+.counter {
+    padding-bottom: 5%;
 }
 
 

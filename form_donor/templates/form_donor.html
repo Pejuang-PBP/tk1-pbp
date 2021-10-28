@@ -1,0 +1,142 @@
+{% extends "bootstrap_skeleton.html" %}
+{% load static %}
+{% block head %}
+<link href="{% static 'form_donor/css/form_donor.css' %}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+{% block title %} Registrasi Pendonor {% endblock %}
+
+{% block content %}
+<!-- Modal -->
+<div class="modal fade" id="modal_syarat" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background: #203B61">
+				<h5 class="modal-title" id="modal_syarat_title" style="color:white">Syarat Pendonor Plasma Konvalesen</h5>
+				<button type="button" class="btn-close btn-close-white" data-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<ul>
+					<li>Telah sembuh dari COVID-19.</li>
+					<li>Tidak memiliki gejala COVID-19 minimal selama 14 hari sebelum donor.</li>
+					<li>Berusia 18-60 tahun dengan berat badan minimal 55 kg.</li>
+					<li>Diutamakan laki-laki, jika perempuan maka disyaratkan belum pernah hamil.</li>
+					<li>Tidak memiliki riwayat transfusi darah selama minimal 6 bulan terakhir.</li>
+					<li>Tidak memiliki komorbid (penyakit penyerta).</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Success Modal-->
+<div class="modal fade" id="modal_success" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content" id="s-modal-content">
+			<div class="modal-header border-0 center" id="success-modal-header">
+				<div class="circle">
+					<svg width="65px" height="65px" fill="#002954" viewBox="0 -2 13 16">
+						<path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+					</svg>
+				</div>
+			</div>
+			<div class="modal-body text-center mt-3" id="success-modal-body">
+				<h5><strong>Success!</strong></h5>
+				<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+			</div>
+			<div class="modal-footer border-0 m-auto">
+				<button class="btn btn-success" id="btn-success-modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Warning Alert -->
+<div class="container mb-0" id="ct2">
+
+	<div class="alert alert-warning fade show pt-0 pb-0" id="warning_alert">
+		<div class="row">
+			<div class="col">
+				<ul id="alert_msg" class="mt-3 mr-4"></ul>
+			</div>
+			<div class="col-auto">
+				<button type="button" class="btn-close mt-3" id='alert_close'></button>
+			</div>
+		</div>
+    </div>
+	
+<a href='#' data-target="#modal_syarat" data-toggle="modal" style="color: #CC1728">*Syarat Pendonor</a>
+
+<!-- Form -->
+<div class="container mt-0 shadow">
+	<form id='form_donor' action="" method="post">
+		{% csrf_token %}
+			
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.nama_lengkap.label }}</label></strong>
+				{{ form.nama_lengkap }}
+		</div><br>
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.nik.label }}</label></strong>
+				{{ form.nik }}
+		</div><p id='p1' class='mb-4' style='color:red'></p>
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.no_hp.label }}</label></strong>
+				{{ form.no_hp }}
+		</div><br>
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.jenis_kelamin.label }}</label></strong>
+			{{ form.jenis_kelamin }}
+		</div><br>
+			
+		<div class="row">
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.tempat_lahir.label }}</label></strong>
+				{{ form.tempat_lahir }}
+			</div>
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.tanggal_lahir.label }}</label></strong>
+				{{ form.tanggal_lahir }}
+			</div>
+		</div><br>
+			
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.alamat.label }}</label></strong>
+			{{ form.alamat }}
+		</div><br>
+			
+		<div class="row">
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.golongan_darah.label }}</label></strong>
+				{{ form.golongan_darah }}
+			</div>
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.rhesus.label }}</label></strong>
+				{{ form.rhesus }}
+			</div>
+		</div><br>
+			
+		<div class="row">
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.berat_badan.label }}</label></strong>
+				{{ form.berat_badan }}
+			</div>
+			<div class="col">
+				<strong><label for="{{ field.auto_id }}">{{ form.tinggi_badan.label }}</label></strong>
+				{{ form.tinggi_badan }}
+			</div>
+		</div><br>
+			
+		<div class="form-group mt-1">
+			<strong><label for="{{ field.auto_id }}">{{ form.komorbid.label }}</label></strong>
+			{{ form.komorbid }}
+		</div><br>
+		<div class="form-group mt-3">
+			<button type="submit"  id="submit-btn" class="w-100 btn submit-btn" >Submit</button>
+		</div>
+	</form>
+</div>
+</div>
+<script src="{% static 'form_donor/js/form_donor.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %}
