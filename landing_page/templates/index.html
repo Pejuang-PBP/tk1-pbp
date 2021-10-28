@@ -12,37 +12,7 @@
 
 {% block content %}
 <!-- NavBar -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <span class="text-red fs-1">Konva</span><span class="text-crimson fs-1">Search</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navlink-group collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link fs-4 text-decoration-none me-4" href="{% url 'home' %}">Home</a>
-        <a class="nav-link fs-4 text-decoration-none me-4" href="#">FAQ</a>
-
-        {% if user.is_authenticated %}
-        <li class="nav-item dropdown">
-          <a class="nav-link fs-4 dropdown-toggle me-2" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ user.get_username }}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="fs-6 dropdown-item" href="#">Dashboard</a></li>
-            <li><a class="fs-6 dropdown-item text-crimson" href="/signout">Logout</a></li>
-          </ul>
-        </li>
-
-        {% else %}
-        <a class="nav-link fs-4 text-decoration-none me-2" href="{% url 'login_page' %}">Login</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</nav>
+{% include "navbar.html" %}
 
 
 <!-- Banner -->
@@ -53,9 +23,9 @@
     <div class="col-4 banner-text">
       <h1 class="display-1 text-wrap">Donasi Plasma Konvalesen</h1>
       
-      <button type="button" formaction="#" class="btn btn-lg text-ronchi donate-btn">
+      <a href="/form-donor" role="button" class="btn btn-lg text-ronchi donate-btn">
         <i class="bi bi-plus-lg"></i> Donasi
-      </button>
+      </a>
     </div>
 
     <div class="col-7 banner-img">
@@ -146,16 +116,7 @@
 
 
 <!-- Footer -->
-<div class="container-fluid footer">
-  <div class="row">
-    <div class="col-5"></div>
-    <div class="col-2">
-      <img class="img-fluid" src="{% static 'landing_page/img/logo2.png' %}">
-      Diisi apa ini?
-    </div>
-    <div class="col-5"></div>
-  </div>
-</div>
+{% include "footer.html" %}
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
