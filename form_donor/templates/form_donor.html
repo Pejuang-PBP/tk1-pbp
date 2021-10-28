@@ -1,12 +1,13 @@
 {% extends "bootstrap_skeleton.html" %}
 {% load static %}
 {% block head %}
-<link href="{% static 'form_donor/css/form_donor.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'form_donor/css/form_donor.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 {% block title %} Registrasi Pendonor {% endblock %}
 
 {% block content %}
+{% include 'navbar.html' %}
 <!-- Modal -->
 <div class="modal fade" id="modal_syarat" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,17 +43,17 @@
 			</div>
 			<div class="modal-body text-center mt-3" id="success-modal-body">
 				<h5><strong>Success!</strong></h5>
-				<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+				<p>Request Anda telah berhasil dikirim</p>
 			</div>
-			<div class="modal-footer border-0 m-auto">
-				<button class="btn btn-success" id="btn-success-modal">OK</button>
+			<div class="modal-footer border-0 m-auto pt-0">
+				<button class="btn" id="btn-success-modal">OK</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <!-- Warning Alert -->
-<div class="container mb-0" id="ct2">
+<div class="container mb-5 pb-5" id="ct2">
 
 	<div class="alert alert-warning fade show pt-0 pb-0" id="warning_alert">
 		<div class="row">
@@ -137,6 +138,7 @@
 	</form>
 </div>
 </div>
+{% include 'footer.html' %}
 <script src="{% static 'form_donor/js/form_donor.js' %}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {% endblock %}

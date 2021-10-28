@@ -61,7 +61,7 @@ class request_donor_form(forms.ModelForm):
 	no_hp.widget.attrs.update({'class':'form-control'})
 	
 	jenis_kelamin = forms.ChoiceField(choices = GENDER_CHOICES, label="Jenis Kelamin")
-	jenis_kelamin.widget.attrs.update({'class':'form-control'})
+	jenis_kelamin.widget.attrs.update({'class':'form-select'})
 	
 	tempat_lahir = forms.CharField(label="Tempat Lahir")
 	tempat_lahir.widget.attrs.update({'class':'form-control'})
@@ -69,10 +69,10 @@ class request_donor_form(forms.ModelForm):
 	alamat = forms.CharField(label="Alamat", widget=forms.Textarea(attrs={'class':'form-control', 'rows':3}))
 	
 	golongan_darah = forms.ChoiceField(choices = BLOOD_TYPE_CHOICES, label="Golongan Darah")
-	golongan_darah.widget.attrs.update({'class':'form-control'})
+	golongan_darah.widget.attrs.update({'class':'form-select'})
 	
 	rhesus = forms.ChoiceField(choices = RHESUS_CHOICES, label="Rhesus")
-	rhesus.widget.attrs.update({'class':'form-control'})
+	rhesus.widget.attrs.update({'class':'form-select'})
 	
 	tinggi_badan = forms.IntegerField(label='Tinggi Badan')
 	tinggi_badan.widget.attrs.update({'class':'form-control'})
