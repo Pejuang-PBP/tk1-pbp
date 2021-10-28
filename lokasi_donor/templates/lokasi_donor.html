@@ -1,0 +1,81 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#myP").hide();
+        $("#myButton").click(function () {
+          $("#myP").toggle();
+        });
+      });
+    </script>
+    <title>TK PBP</title>
+  </head>
+  <body>
+    <div id="div1"><h2>Apa itu UTD?</h2></div>
+    <br />
+    <button id="myButton">Penjelasan</button>
+    <br />
+    <br />
+    <p id="myP">
+      Unit Transfusi Darah (UTD) adalah salah satu unit kerja yang ada di PMI
+      yang memfasilitasi pelayanan kesehatan yang menyelenggarakan donor darah,
+      penyediaan darah, dan pendistribusian darah. Tugas dan fungsi utamanya
+      ialah meningkatkan derajat kesehatan melalui pengelolaan darah yang
+      berkualitas, mewujudkan pelayanan penyediaan darah yang aman, tepat waktu,
+      terjangkau dan berkesinambungan.
+      <br />
+      Para pendonor dipersilakan untuk melakukan tahapan-tahapan berikut secara
+      berurut di salah satu UTD yang tersedia:
+      <br />
+      1. Tahap registrasi
+      <br />
+      2. Tahap Pemeriksaan Pendahuluan
+      <br />
+      3. Tahap Pemeriksaan Kesehatan oleh Dokter
+      <br />
+      4. Tahap Pengambilan Darah Donor
+      <br />
+      5. Tahap Administrasi
+      <br />
+    </p>
+
+    <form method="get">
+      {{myFilter.form}}
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <table class="table" id="UTDs">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nama</th>
+          <th scope="col">Kota</th>
+          <th scope="col">Alamat</th>
+          <th scope="col">Jam Operasi</th>
+          <th scope="col">Kontak</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for data in utd%}
+        <tr>
+          <td>{{data.nama}}</td>
+          <td>{{data.kota}}</td>
+          <td>{{data.alamat}</td>
+          <td>{{data.jamOperasi}}</td>
+          <td>{{data.nomorTelepon}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -27,7 +27,8 @@ import form_pencari_donor.urls as form_pencari_donor
 import lokasi_donor.urls as lokasi_donor
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(landing_page)),
-    path('dashboard/', include(dashboard_pencari_donor)),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("admin/", admin.site.urls),
+    path("", include(landing_page)),
+    path("dashboard/", include(dashboard_pencari_donor)),
+    path("lokasi-donor", include(lokasi_donor)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
