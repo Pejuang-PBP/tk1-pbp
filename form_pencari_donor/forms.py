@@ -22,11 +22,16 @@ URGENCY = [
 ]
 
 
+def nik_validator(valid):
+    if(len(str(valid))) != 16:
+        raise forms.ValidationError("NIK harus terdiri dari 16 angka")
+
+
 class request_pencari_donor_form(forms.ModelForm):
     nama = forms.CharField(label="Nama Lengkap")
     nama.widget.attrs.update({'class': 'form-control'})
 
-    nomor_induk = forms.IntegerField(label='NIK')
+    nomor_induk = forms.IntegerField(label='NIK', validators=[nik_validator])
     nomor_induk.widget.attrs.update({'class': 'form-control'})
 
     nomor_hp = forms.CharField(label="Nomor HP")

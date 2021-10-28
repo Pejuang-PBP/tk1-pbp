@@ -29,14 +29,17 @@ import lokasi_donor.urls as lokasi_donor
 
 from django.contrib.auth import logout
 
+
 def signout(request):
     logout(request)
     return HttpResponseRedirect("/")
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(landing_page)),
     path('dashboard/', include(dashboard_pencari_donor)),
     path('form-donor/', include(form_donor)),
+    path('form-pencari-donor/', include(form_pencari_donor)),
     path('signout', signout)
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

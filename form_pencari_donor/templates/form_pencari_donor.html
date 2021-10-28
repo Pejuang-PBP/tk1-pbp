@@ -1,0 +1,121 @@
+{% extends "bootstrap_skeleton.html" %} 
+{% load static %} 
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'form_pencari_donor/css/form_pencari_donor.css' %}">
+{% endblock %} 
+
+{% block title %} Registrasi Pencari donor {% endblock %}
+
+{% block content %}
+<!-- Success Modal-->
+<div class="modal fade" id="modal_success" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content" id="s-modal-content">
+			<div class="modal-header border-0 center" id="success-modal-header">
+				<div class="circle">
+					<svg width="65px" height="65px" fill="#002954" viewBox="0 -2 13 16">
+						<path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+					</svg>
+				</div>
+			</div>
+			<div class="modal-body text-center mt-3" id="success-modal-body">
+				<h5><strong>Success!</strong></h5>
+				<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+			</div>
+			<div class="modal-footer border-0 m-auto">
+				<button class="btn btn-success" id="btn-success-modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Warning Alert -->
+<div class="container mb-0" id="ct2">
+
+	<div class="alert alert-warning fade show pt-0 pb-0" id="warning_alert">
+		<div class="row">
+			<div class="col">
+				<ul id="alert_msg" class="mt-3 mr-4"></ul>
+			</div>
+			<div class="col-auto">
+				<button type="button" class="btn-close mt-3" id='alert_close'></button>
+			</div>
+		</div>
+  </div>
+
+<div class="container mt-5 shadow">
+  <form id="form_pencari_donor" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.nama.label }}</label></strong>
+      {{ form.nama }}
+    </div>
+    <br />
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.nomor_induk.label }}</label></strong>
+      {{ form.nomor_induk }}
+    </div>
+    <p id='p1' class='mb-4' style='color:red'></p>
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.nomor_hp.label }}</label></strong>
+      {{ form.nomor_hp }}
+    </div>
+    <br />
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.jenis_kelamin.label }}</label></strong>
+      {{ form.jenis_kelamin }}
+    </div>
+    <br />
+    
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.tempat_lahir.label }}</label></strong>
+        {{ form.tempat_lahir }}
+      </div>
+      <div class="col">
+        <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.tanggal_lahir.label }}</label></strong>
+        {{ form.tanggal_lahir }}
+      </div>
+    </div>
+    <br />
+    
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.alamat.label }}</label></strong>
+      {{ form.alamat }}
+    </div>
+    <br />
+    
+    <div class="row">
+      <div class="col mb-2">
+        <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.golongan_darah.label }}</label></strong>
+        {{ form.golongan_darah }}
+      </div>
+      <div class="col-md-6">
+        <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.rhesus.label }}</label></strong>
+        {{ form.rhesus }}
+      </div>
+    </div>
+    <br />
+    
+    <div class="form-group mt-1">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.tempat_rawat.label }}</label></strong>
+      {{ form.tempat_rawat }}
+    </div>
+    <div class="form-group mt-3">
+      <strong><label for="{{ field.auto_id }}" class="mb-1">{{ form.urgency.label }}</label></strong>
+      {{ form.urgency }}
+    </div>
+    <div class="form-group mt-3">
+      <button type="submit" class="w-100 btn submit-btn">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'form_pencari_donor/js/form_pencari_donor.js' %}"></script>
+{% endblock %}
