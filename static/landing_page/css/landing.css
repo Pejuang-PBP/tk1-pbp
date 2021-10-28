@@ -14,14 +14,6 @@
     background-color: #D1DEEC;
 }
 
-
-
-
-.navlink-group {
-    justify-content: right;
-}
-
-
 .banner {
     padding-top: 5%;
     padding-bottom: 5%;
@@ -74,15 +66,6 @@
 
 .counter {
     padding-bottom: 5%;
-}
-
-
-.footer {
-    background-color: white;
-}
-.footer .row {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
 }
 
 
