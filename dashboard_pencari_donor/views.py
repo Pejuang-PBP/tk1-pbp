@@ -78,8 +78,6 @@ def report(request):
           "replies": serializers.serialize("json", responses)
         })
 
-
-
       return JsonResponse(data, safe=False)
     else:
       return not_authenticated()
