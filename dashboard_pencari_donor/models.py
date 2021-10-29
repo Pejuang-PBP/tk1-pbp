@@ -1,6 +1,7 @@
 import django.utils.timezone
 from django.db import models
 from django.contrib.auth.models import User
+from form_pencari_donor.models import request_pencari_donor
 
 # Create your models here.
 class Notifications(models.Model):
@@ -20,3 +21,7 @@ class Response(models.Model):
     timestamp = models.DateTimeField(default=django.utils.timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_pencari_response')
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
+
+class Donor(models.Model):
+    donor = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    request = models.OneToOneField(to=request_pencari_donor, on_delete=models.CASCADE)
