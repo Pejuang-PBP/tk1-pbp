@@ -48,7 +48,7 @@ def get_request(request):
 def report(request):
   if request.method == "POST":
     if request.user.is_authenticated:
-      
+      return
 
   return not_authenticated()
 
