@@ -8,6 +8,7 @@
 {% block title %} Registrasi Pencari donor {% endblock %}
 
 {% block content %}
+{% include "navbar.html" %}
 <!-- Success Modal-->
 <div class="modal fade" id="modal_success" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -44,7 +45,10 @@
 		</div>
   </div>
 
-<div class="container mt-5 shadow">
+<!-- <div class="pb-3">
+  <span class="fs-2">Formulir Pendaftaran</span>
+</div> -->
+<div class="container mt-0 shadow mb-5">
   <form id="form_pencari_donor" action="" method="POST">
     {% csrf_token %}
     <div class="form-group mt-1">
@@ -114,6 +118,7 @@
   </form>
 </div>
 </div>
+{% include "footer.html" %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
