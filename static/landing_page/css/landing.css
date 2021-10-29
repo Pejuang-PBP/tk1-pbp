@@ -67,6 +67,12 @@
 .counter {
     padding-bottom: 5%;
 }
+#donor-bar {
+    background-color: red;
+}
+#recipient-bar {
+    background-color: #CC1728;
+}
 
 
 @media only screen and (max-width:767px) {
