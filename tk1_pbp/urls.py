@@ -38,7 +38,7 @@ def signout(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(landing_page)),
-    path("dashboard/", include(dashboard_pencari_donor)),
+    path("dashboard-pencari/", include(dashboard_pencari_donor)),
     path("form-donor/", include(form_donor)),
     path("form-pencari-donor/", include(form_pencari_donor)),
     path("signout", signout),

@@ -68,7 +68,7 @@ const setFields = (item) => {
 };
 
 const updateRequest = () => {
-  fetch("/dashboard/api/request")
+  fetch("/dashboard-pencari/api/request")
     .then((res) => res.json())
     .then((data) => {
       if (data.length) {
@@ -78,7 +78,7 @@ const updateRequest = () => {
         setFields(item);
 
         document.addEventListener("delete:request", (e) => {
-          fetch(`/dashboard/api/request?id=${item.pk}`, {
+          fetch(`/dashboard-pencari/api/request?id=${item.pk}`, {
             method: "DELETE",
           }).then(() => {
             updateRequest();
