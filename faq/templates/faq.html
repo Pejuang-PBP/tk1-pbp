@@ -1,0 +1,71 @@
+{% extends "bootstrap_skeleton.html" %} {% load static %} {% block title %}
+KonvaSearch {% endblock %} {% block head %}
+<link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+{% endblock %} {% block content %}
+
+<body>
+    <!-- NavBar -->
+    {% include "navbar.html" %}
+    <br>
+    <div class="container">
+        <h2>Frequently Asked Question</h2>
+        <div id="accordion">
+       
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+              Pertanyaan #1
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse">
+            <div class="card-body">
+              Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 |  
+            </div>
+          </div>
+        </div>
+       
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Pertanyaan #2
+            </a>
+          </div>
+          <div id="collapseTwo" class="collapse">
+            <div class="card-body">
+              Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | 
+            </div>
+          </div>
+        </div>
+       
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Pertanyaan #3
+            </a>
+          </div>
+          <div id="collapseThree" class="collapse">
+            <div class="card-body">
+              Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | 
+            </div>
+          </div>
+        </div>
+
+       
+      </div>
+      </div>
+
+</body>
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'landing_page/js/landing.js' %}"></script>
+{% endblock %}

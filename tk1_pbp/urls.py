@@ -26,6 +26,7 @@ import faq.urls as faq
 import form_donor.urls as form_donor
 import form_pencari_donor.urls as form_pencari_donor
 import lokasi_donor.urls as lokasi_donor
+import faq.urls as faq
 
 from django.contrib.auth import logout
 
@@ -44,4 +45,5 @@ urlpatterns = [
     path("form-pencari-donor/", include(form_pencari_donor)),
     path("signout", signout),
     path("lokasi-donor/", include(lokasi_donor)),
+    path("faq/", include(faq)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
