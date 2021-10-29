@@ -44,7 +44,11 @@ def get_request(request):
           return HttpResponse("You do not have the permission to remove this row.", content_type="text/plain")
       except request_pencari_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
-        
+
+def report(request):
+  if request.method == "POST":
+    if request.user.is_authenticated:
+      
 
   return not_authenticated()
 
