@@ -24,4 +24,4 @@ class Response(models.Model):
 
 class Donor(models.Model):
     donor = models.OneToOneField(to=User, on_delete=models.CASCADE)
-    request = models.OneToOneField(to=request_pencari_donor, on_delete=models.CASCADE)
+    request = models.ForeignKey(to=request_pencari_donor, on_delete=models.CASCADE)
