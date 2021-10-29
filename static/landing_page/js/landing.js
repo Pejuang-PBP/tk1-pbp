@@ -29,7 +29,7 @@ function refreshCounter() {
       console.log("Error");
     },
     complete: function() {
-      setTimeout(refreshCounter, 30000);
+      setTimeout(refreshCounter, 60000);
     }
   });
 }
