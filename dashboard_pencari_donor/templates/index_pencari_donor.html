@@ -198,9 +198,19 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   reportForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(reportForm);
-    fetch("/dashboard-pencari/api/report", { method: "POST", data })
+
+    fetch("/dashboard-pencari/api/report", {
+      method: "POST",
+      body: data,
+    })
       .then((res) => res.json())
-      .then((item) => console.log(item));
+      .then((item) => {
+        if (item.status) alert("Successfully created a report!");
+        else throw new Error("An error occurred while creating your report.");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   });
 </script>
 {% endblock %}

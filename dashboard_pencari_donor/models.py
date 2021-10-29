@@ -9,13 +9,14 @@ class Notifications(models.Model):
     timestamp = models.DateTimeField(default=django.utils.timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_pencari_notifications')
 
-class Response(models.Model):
-    message = models.CharField(max_length=2000)
-    timestamp = models.DateTimeField(default=django.utils.timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_pencari_response')
-
 class Report(models.Model):
     title = models.CharField(max_length=500)
     message = models.CharField(max_length=2000)
     timestamp = models.DateTimeField(default=django.utils.timezone.now)
-    response = models.ForeignKey(to=Response, on_delete=models.CASCADE, related_name='user_pencari_report')
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+
+class Response(models.Model):
+    message = models.CharField(max_length=2000)
+    timestamp = models.DateTimeField(default=django.utils.timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_pencari_response')
+    report = models.ForeignKey(Report, on_delete=models.CASCADE)

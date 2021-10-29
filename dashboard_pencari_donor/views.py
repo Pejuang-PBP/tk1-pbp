@@ -1,11 +1,12 @@
 from django.db import models
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseNotFound, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Notifications
+from .forms import ReportForm
 from form_pencari_donor.models import request_pencari_donor
 
 def not_authenticated():
@@ -48,7 +49,21 @@ def get_request(request):
 def report(request):
   if request.method == "POST":
     if request.user.is_authenticated:
-      return
+        form = ReportForm(request.POST)
+        
+        if form.is_valid():
+          # process the data in form.cleaned_data as required
+          # ...
+          # redirect to a new URL:
+          obj = form.save(commit=False)
+          obj.user = request.user
+          obj.save()
+          
+          return JsonResponse({ "status": True })
+        return JsonResponse({ "status": False })
+    else:
+      return not_authenticated()
+  return HttpResponseNotFound()
 
-  return not_authenticated()
+
 
