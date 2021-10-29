@@ -9,6 +9,7 @@
       <div class="navlink-group collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: right;">
         <div class="navbar-nav">
           <a class="nav-link fs-4 text-decoration-none me-4" href="{% url 'home' %}">Home</a>
+          <a class="nav-link fs-4 text-decoration-none me-4" href="/lokasi-donor">Lokasi UTD</a>
           <a class="nav-link fs-4 text-decoration-none me-4" href="#">FAQ</a>
   
           {% if user.is_authenticated %}
@@ -17,9 +18,9 @@
               {{ user.get_username }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="fs-6 dropdown-item" href="#">Dashboard</a></li>
-              <li><a class="fs-6 dropdown-item" href="#">Donor</a></li>
-              <li><a class="fs-6 dropdown-item" href="#">Cari Donor</a></li>
+              <li><a class="fs-6 dropdown-item" href="/dashboard">Dashboard</a></li>
+              <li><a class="fs-6 dropdown-item" href="/form-donor">Donor</a></li>
+              <li><a class="fs-6 dropdown-item" href="/form-pencari-donor">Cari Donor</a></li>
               <li><a class="fs-6 dropdown-item" href="/signout" style="color: #CC1728;">Logout</a></li>
             </ul>
           </li>
