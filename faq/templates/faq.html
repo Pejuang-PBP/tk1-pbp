@@ -15,7 +15,11 @@ KonvaSearch {% endblock %} {% block head %}
     {% include "navbar.html" %}
     <br>
     <div class="container">
-        <h2>Frequently Asked Question</h2>
+        <h2>
+          <font color="red">Frequently</font>
+          <font color="#CC1728">Asked</font>
+          <font color="#050359">Question</font>
+        </h2> 
         <div id="accordion">
        
         <div class="card">
@@ -59,6 +63,34 @@ KonvaSearch {% endblock %} {% block head %}
 
        
       </div>
+
+      <br>
+      <br>
+      <br>
+      <h2>
+        <font color="red">Any</font>
+        <font color="#CC1728">Other</font>
+        <font color="#050359">Question?</font>
+      </h2> 
+      <div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class = "mb-3">
+            {{ form.name.errors }}
+            <label for = "{{ form.name.InputNama }}" class="form-label">Nama Lengkap:</label>
+            <input type="text" class="form-control" id="InputNama">
+          </div>
+          <div class = "mb-3">
+            {{ form.pertanyaan.errors }}
+            <label for = "{{ form.pertanyaan.InputPertanyaan }}" class="form-label">Pertanyaan:</label>
+            <input type="text" class="form-control" id="InputPertanyaan">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      
+          <!-- <input type="submit" value="Submit"> -->
+        </form>
+      </div>
+
       </div>
 
 </body>
