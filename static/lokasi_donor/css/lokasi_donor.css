@@ -1,0 +1,22 @@
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid #002954;
+}
+
+.btn-primary {
+  background-color: #af0011;
+}
+
+.page-header {
+  margin-bottom: 50px;
+  padding: 40px 10px;
+  border-bottom: 5px solid #002954;
+  margin-top: 10px;
+  background: #c2dfff
+    url("https://asset-a.grid.id/crop/0x0:0x0/945x630/photo/2021/01/31/2736410jpg-20210131121959.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
