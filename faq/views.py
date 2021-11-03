@@ -19,8 +19,7 @@ def index(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = PertanyaanLain()
-    response = {'form': form, 'tanya':tanya}
-    response = {'Form1': Form1}
+    response = {'form': Form1, 'tanya':tanya}
     return render(request, "faq.html", response) #response
 
 
