@@ -20,6 +20,7 @@ def index(request):
     else:
         form = PertanyaanLain()
     response = {'form': form, 'tanya':tanya}
+    response = {'Form1': Form1}
     return render(request, "faq.html", response) #response
 
 
