@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, render
 
 from faq.forms import PertanyaanLain
+from faq.models import Form1
 
 # Create your views here.
 
@@ -12,11 +14,12 @@ def index(request):
             # process the data in form.cleaned_data as required
             # save if valid
         form.save()
+        #return redirect('index')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = PertanyaanLain()
-    response = {'form': form}
+    response = {'Form1': Form1}
     return render(request, "faq.html", response) #response
 
 
