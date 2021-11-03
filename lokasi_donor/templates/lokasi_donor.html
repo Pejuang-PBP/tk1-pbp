@@ -1,10 +1,6 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends "bootstrap_skeleton.html" %} {% load static %} {% block title %}
+KonvaSearch {% endblock %} {% block head %}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
@@ -12,51 +8,17 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#clickHelp").click(function () {
-          if ($("#divHelp").html() == "") {
-            $("#divHelp").load("include");
-          } else {
-            $("#divHelp").html("");
-          }
-        });
-      });
-    </script>
-
-    <style type="text/css">
-      hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 1px solid #002954;
-      }
-
-      .btn-primary {
-        background-color: #af0011;
-      }
-
-      .page-header {
-        margin-bottom: 50px;
-        padding: 40px 10px;
-        border-bottom: 5px solid #002954;
-        margin-top: 10px;
-        background: #c2dfff
-          url("https://asset-a.grid.id/crop/0x0:0x0/945x630/photo/2021/01/31/2736410jpg-20210131121959.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: top;
-      }
-    </style>
-
-    <title>TK PBP</title>
-  </head>
+    <link href="{% static 'lokasi_donor/css/lokasi_donor.css' %}" rel="stylesheet" />
+    <script src="{% static 'lokasi_donor/js/lokasi_donor.js' %}"></script>
+    {% endblock %} {% block content %}
   <body>
+    <!-- NavBar -->
     <div>{% include "navbar.html" %}</div>
     <br />
-
     <div class="page-header"></div>
-    <div id="clickHelp" class="card-header">Apa itu UTD?(Klik!)</div>
+    <div class="card-header">
+      <button id="clickHelp" class="btn btn-primary" type="submit">Apa itu UTD?</button>
+    </div>
     <div id="divHelp"></div>
     <br /><br />
 
@@ -91,4 +53,5 @@
     <hr />
     <div>{% include "footer.html" %}</div>
   </body>
+  {% endblock %}
 </html>
