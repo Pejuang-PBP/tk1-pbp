@@ -11,8 +11,4 @@ class PertanyaanLain(forms.ModelForm):
             'name': _('Nama Lengkap'),
         }
 
-        error_messages = {
-		'required' : 'Please Type'
-	    }
-
     
