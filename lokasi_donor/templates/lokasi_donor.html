@@ -14,12 +14,16 @@
     />
     <script type="text/javascript">
       $(document).ready(function () {
-        $(".card-body").hide();
-        $(".card-header").click(function () {
-          $(".card-body").toggle();
+        $("#clickHelp").click(function () {
+          if ($("#divHelp").html() == "") {
+            $("#divHelp").load("include");
+          } else {
+            $("#divHelp").html("");
+          }
         });
       });
     </script>
+
     <style type="text/css">
       hr {
         margin-top: 1rem;
@@ -44,6 +48,7 @@
         background-position: top;
       }
     </style>
+
     <title>TK PBP</title>
   </head>
   <body>
@@ -51,42 +56,15 @@
     <br />
 
     <div class="page-header"></div>
-
-    <div class="card">
-      <div class="card-header">Apa itu UTD?(Klik!)</div>
-      <div class="card-body">
-        <h5 class="card-title">UTD</h5>
-        <p class="card-text">
-          Unit Transfusi Darah (UTD) adalah salah satu unit kerja yang ada di
-          PMI yang memfasilitasi pelayanan kesehatan yang menyelenggarakan donor
-          darah, penyediaan darah, dan pendistribusian darah. Tugas dan fungsi
-          utamanya ialah meningkatkan derajat kesehatan melalui pengelolaan
-          darah yang berkualitas, mewujudkan pelayanan penyediaan darah yang
-          aman, tepat waktu, terjangkau dan berkesinambungan.
-          <br />
-          Para pendonor dipersilakan untuk melakukan tahapan-tahapan berikut
-          secara berurut di salah satu UTD yang tersedia:
-          <br />
-          1. Tahap registrasi
-          <br />
-          2. Tahap Pemeriksaan Pendahuluan
-          <br />
-          3. Tahap Pemeriksaan Kesehatan oleh Dokter
-          <br />
-          4. Tahap Pengambilan Darah Donor
-          <br />
-          5. Tahap Administrasi
-          <br />
-        </p>
-      </div>
-    </div>
-    <br />
-    <br />
+    <div id="clickHelp" class="card-header">Apa itu UTD?(Klik!)</div>
+    <div id="divHelp"></div>
+    <br /><br />
 
     <form method="get">
       {{myFilter.form}}
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
+
     <br />
     <table class="table" id="UTDs">
       <thead class="thead-dark" id="myThead">
@@ -111,7 +89,6 @@
       </tbody>
     </table>
     <hr />
-
     <div>{% include "footer.html" %}</div>
   </body>
 </html>
