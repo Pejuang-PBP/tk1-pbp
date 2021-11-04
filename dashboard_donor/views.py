@@ -67,7 +67,7 @@ def report(request):
     else:
       return not_authenticated()
   elif request.method == "GET" :
-    if request.is_authenticated:
+    if request.user.is_authenticated:
       reports = Report.objects.select_related().filter(user=request.user)
       data = []
 
