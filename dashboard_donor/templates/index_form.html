@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Notes Form
+        </title>
+    </head>
+    <style>
+       @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 20px 20px 30px 20px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            position: static;
+        }
+
+        html,body{
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(-135deg, #5d2aa0, #bbc4f1);
+        }
+        ::selection{
+            background: #4158d0;
+            color: #fff;
+        }
+
+        input[type=text], select {
+          width: 100%;
+          padding: 10px 20px;
+          margin: 10px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        
+        input[type=submit] {
+            width : 100%;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding : 15px 32px;
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:active{
+            transform: scale(0.95);
+        }
+
+        .head {
+            width: 100%;
+            margin: 0px;
+            padding: 50px;
+            font-size: 50px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+        }
+
+        .form-content {
+            border-radius: 5px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+            border-radius: 0px 0px 15px 15px;
+        }
+
+        .back-button {
+            width: 100%;
+            background-color: #153ba5;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 20px;
+            border: none;
+            overflow: hidden;
+            margin: 20px 0px 50px 0px;
+            cursor: pointer;
+        }
+
+    </style>
+    <body>
+        <!-- <h1 class="head">Notes Form</h1>
+        <form class="form-content" action="" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit"/>
+        </form>
+        <button class="back-button" onclick="location.href='http://127.0.0.1:8000/lab-4/'">Back</button> -->
+        <div
+  class="modal fade"
+  id="reportModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <form id="report-form">
+    {% csrf_token %}
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buat Report</h5>
+        </div>
+        <div class="modal-body">
+          <div class="p-3">
+            <div class="form-group mb-3">
+              <label for="title" class="mb-1">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                placeholder="Enter title"
+              />
+              <small id="titleHelp" class="form-text text-muted"
+                >Perihal yang ingin dilaporkan, maksimal 200 huruf.</small
+              >
+            </div>
+            <div class="form-group mb-3">
+              <label for="exampleInputPassword1" class="mb-1">Message</label>
+              <textarea
+                class="form-control"
+                style="min-height: 16rem"
+                name="message"
+                id="message"
+                placeholder="Enter message."
+              ></textarea>
+              <small id="messageHelp" class="form-text text-muted"
+                >Maksimal 2000 huruf.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Batalkan
+          </button>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+            Buat Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+    </body>
+</html>

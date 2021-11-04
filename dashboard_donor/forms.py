@@ -1,7 +1,7 @@
-from .models import Notifications
+from .models import Report
 from django.forms import ModelForm
 
-class NotificationsForm(ModelForm):
+class ReportForm(ModelForm):
     class Meta:
-        model = Notifications
-        fields="__all__"
+        model = Report
+        fields= ['title','message']

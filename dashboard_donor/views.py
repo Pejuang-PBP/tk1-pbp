@@ -1,12 +1,13 @@
 from django.db import models
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Notifications
+from .models import Notifications, Report, Response
 from form_donor.models import request_donor
+from .forms import ReportForm
 
 # Create your views here.
 
@@ -48,5 +49,39 @@ def get_request(request):
       except request_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
         
+def report(request):
+  if request.method == "POST":
+    if request.user.is_authenticated:
+        form = ReportForm(request.POST)
+        
+        if form.is_valid():
+          # process the data in form.cleaned_data as required
+          # ...
+          # redirect to a new URL:
+          obj = form.save(commit=False)
+          obj.user = request.user
+          obj.save()
+          
+          return JsonResponse({ "status": True })
+        return JsonResponse({ "status": False })
+    else:
+      return not_authenticated()
+  elif request.method == "GET" :
+    if request.is_authenticated:
+      reports = Report.objects.select_related().filter(user=request.user)
+      data = []
 
-  return not_authenticated()
+      for thisReport in reports:
+        responses = Response.objects.filter(report=thisReport)
+        data.append({
+          "title": thisReport.title,
+          "message": thisReport.message,
+          "timestamp": thisReport.timestamp,
+          "replies": serializers.serialize("json", responses)
+        })
+
+      return JsonResponse(data, safe=False)
+    else:
+      return not_authenticated()
+
+  return HttpResponseNotFound()
