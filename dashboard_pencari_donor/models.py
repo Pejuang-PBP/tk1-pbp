@@ -2,6 +2,7 @@ import django.utils.timezone
 from django.db import models
 from django.contrib.auth.models import User
 from form_pencari_donor.models import request_pencari_donor
+from form_donor.models import request_donor
 
 # Create your models here.
 class Notifications(models.Model):
@@ -27,5 +28,6 @@ class Response(models.Model):
 
 class Donor(models.Model):
     donor = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    donor_data = models.OneToOneField(to=request_donor, on_delete=models.CASCADE)
     request = models.ForeignKey(to=request_pencari_donor, on_delete=models.CASCADE)
     chosen = models.BooleanField(default=False)
