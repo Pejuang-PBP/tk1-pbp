@@ -201,11 +201,74 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   </form>
 </div>
 
+<div
+  class="modal fade"
+  id="reportDetailsModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  {% csrf_token %}
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informasi Report</h5>
+      </div>
+      <div class="modal-body">
+        <div class="p-3">
+          <div class="form-group mb-3">
+            <label for="title" class="mb-1 fw-bold">Title</label>
+            <p id="reportTitle"></p>
+          </div>
+          <div class="form-group mb-3">
+            <label for="exampleInputPassword1" class="mb-1 fw-bold">Message</label>
+            <p id="reportMessage"></p>
+          </div>
+          <div class="form-group mb-3">
+            <label for="exampleInputPassword1" class="mb-1 fw-bold">Replies</label>
+            <div id="replies">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- AJAX call to fetch and render notifications -->
 <script src="{% static 'dashboard/scripts/pencari_donor/notifications.js' %}"></script>
 <script src="{% static 'dashboard/scripts/pencari_donor/request.js' %}"></script>
 <script>
+  const reportDetailsModal = new window.bootstrap.Modal(document.getElementById('reportDetailsModal'))
+  
+  const openReportDetailsModal = (item) => {
+    const { title, message, timestamp, reply } = item.dataset;
+    let replyString = "";
+    document.getElementById("reportTitle").innerHTML = title;
+    document.getElementById("reportMessage").innerHTML = message;
+    JSON.parse(reply.replaceAll("'", "\"")).forEach((item) => {
+      replyString += `
+      <div style="border: black solid 1px; border-radius: 1rem; padding: 1rem; margin-bottom: 0.5rem">
+        <p class="mb-2"><span class="fw-bold">From:</span> Admin</p>
+        <p class="fw-bold mb-1">Message:</p>
+        <p>${item.fields.message}</p>
+      </div>
+      `
+    })
+    document.getElementById("replies").innerHTML = replyString;
+    
+    reportDetailsModal.show();
+  }
+
   const renderReports = (data) => {
+    console.log(data);
     let templateString = "";
     data.forEach((item) => {
       templateString += `
@@ -215,7 +278,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
           <p>Replies: ${JSON.parse(item.replies).length}</p>
         </div>
         <div>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="openReportDetailsModal(this)" data-title="${item.title}" data-message="${item.message}" data-reply="${item.replies.replaceAll("\"", "'")}" data-timestamp="${item.timestamp}">
             Buka
           </button>
         </div>
