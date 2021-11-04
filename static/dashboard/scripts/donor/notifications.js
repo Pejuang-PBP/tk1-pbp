@@ -33,7 +33,7 @@ setInterval(() => {
         inner += template(
           item.fields.title,
           item.fields.message,
-          item.fields.timestamp
+          item.fields.timestamp,
         );
       });
       document.getElementById("notifications").innerHTML = inner;

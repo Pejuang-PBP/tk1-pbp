@@ -17,7 +17,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
       <h1 class="display-6 fw-bold">Halo, {{ user.username }}</h1>
       <p class="fs-5">
         Anda berstatus sebagai
-        <span class="text-oxford-blue fw-bold">Pencari Donor</span>
+        <span class="text-oxford-blue fw-bold">Pendonor</span>
       </p>
       <div id="badge-container" class="d-flex flex-wrap">
         <!-- <span class="badge rounded-pill bg-danger px-3 py-2"
@@ -76,7 +76,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
         id="create-button-container"
         class="w-100 d-none justify-content-center"
       >
-        <a class="btn btn-success position-relative" href="/form-pencari-donor">
+        <a class="btn btn-success position-relative" href="/form-donor">
           Buat Request
         </a>
       </div>
@@ -143,7 +143,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   </div>
 </div>
 
-<!-- <div
+<div
   class="modal fade"
   id="reportModal"
   tabindex="-1"
@@ -199,7 +199,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
       </div>
     </div>
   </form>
-</div> -->
+</div>
 
 <!-- AJAX call to fetch and render notifications -->
 <script src="{% static 'dashboard/scripts/donor/notifications.js' %}"></script>
@@ -226,7 +226,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   };
 
   const getReports = () => {
-    fetch("/dashboard-pencari/api/report")
+    fetch("/dashboard-donor/api/report")
       .then((res) => res.json())
       .then((data) => renderReports(data));
   };
@@ -239,7 +239,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     e.preventDefault();
     const data = new FormData(reportForm);
 
-    fetch("/dashboard-pencari/api/report", {
+    fetch("/dashboard-donor/api/report", {
       method: "POST",
       body: data,
     })
