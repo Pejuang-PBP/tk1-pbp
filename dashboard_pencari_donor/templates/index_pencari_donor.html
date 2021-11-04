@@ -218,15 +218,15 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
       <div class="modal-body">
         <div class="p-3">
           <div class="form-group mb-3">
-            <label for="title" class="mb-1 fw-bold">Title</label>
+            <label for="title" class="mb-1 fw-bold">Title:</label>
             <p id="reportTitle"></p>
           </div>
           <div class="form-group mb-3">
-            <label for="exampleInputPassword1" class="mb-1 fw-bold">Message</label>
+            <label for="exampleInputPassword1" class="mb-1 fw-bold">Message:</label>
             <p id="reportMessage"></p>
           </div>
           <div class="form-group mb-3">
-            <label for="exampleInputPassword1" class="mb-1 fw-bold">Replies</label>
+            <label for="exampleInputPassword1" class="mb-2 fw-bold">Replies:</label>
             <div id="replies">
               
             </div>
@@ -255,7 +255,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     document.getElementById("reportMessage").innerHTML = message;
     JSON.parse(reply.replaceAll("'", "\"")).forEach((item) => {
       replyString += `
-      <div style="border: black solid 1px; border-radius: 1rem; padding: 1rem; margin-bottom: 0.5rem">
+      <div style="border: #9b9a9a solid 1px; border-radius: 1rem; padding: 1rem; margin-bottom: 0.5rem">
         <p class="mb-2"><span class="fw-bold">From:</span> Admin</p>
         <p class="fw-bold mb-1">Message:</p>
         <p>${item.fields.message}</p>
