@@ -19,7 +19,8 @@ fetch("/dashboard-donor/api/notifications")
       inner += template(
         item.fields.title,
         item.fields.message,
-        item.fields.timestamp
+        item.fields.timestamp,
+        item.fields.status
       );
     });
     document.getElementById("notifications").innerHTML = inner;
@@ -34,6 +35,7 @@ setInterval(() => {
           item.fields.title,
           item.fields.message,
           item.fields.timestamp,
+          item.fields.status
         );
       });
       document.getElementById("notifications").innerHTML = inner;

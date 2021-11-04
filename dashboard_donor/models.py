@@ -17,7 +17,9 @@ class Report(models.Model) :
     message = models.CharField(max_length=2000)
     timestamp = models.DateTimeField(default=django.utils.timezone.now)
     # status = models.CharField(max_length=20)
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE,related_name='user_donor_report')
+    def __str__(self):
+        return f"{self.user.username} - {self.title}"
 
 class Response(models.Model):
     message = models.CharField(max_length=2000)
