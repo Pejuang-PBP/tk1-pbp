@@ -318,8 +318,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
               ${item.chosen === false
                 ? `
                 <div class="float-end">
-                  <a data-id=${item.pk} href="#" class="btn btn-danger" style="margin-left: auto;" onclick="rejectDonor(this)">Decline</a>
-                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="acceptDonor(this)">Accept</a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="takeRequest(this)">Accept</a>
                 </div>
                 `
                 : `
@@ -333,13 +332,8 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
       donorContainer.innerHTML = donorString.length > 0 ? donorString : "Belum mendapatkan calon penerima donor.";
     })
   }
-  const rejectDonor = (element) => {
-    fetch(`/dashboard-donor/api/donor?id=${element.dataset.id}`, { method: "DELETE" })
-      .then(() => {
-        fetchDonor();
-      })
-  }
-  const acceptDonor = (element) => {
+
+  const takeRequest = (element) => {
     fetch(`/dashboard-donor/api/donor`, { method: "POST", body: new URLSearchParams({ id: element.dataset.id }) })
       .then(() => {
         fetchDonor();

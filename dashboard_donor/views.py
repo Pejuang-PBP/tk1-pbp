@@ -92,7 +92,7 @@ def report(request):
 def donors(request):
   if request.user.is_authenticated:
     if request.method == "GET":
-      requestObject = request_donor.objects.filter(user=request.user)
+      requestObject = request_pencari_donor.objects.all()
       donors = Donor.objects.select_related().filter(request_id=requestObject[0].pk)
       data = []
 
