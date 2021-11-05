@@ -331,7 +331,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
           </div>
         `
       })
-      donorContainer.innerHTML = donorString;
+      donorContainer.innerHTML = donorString.length > 0 ? donorString : "Belum mendapatkan calon donor.";
     })
   }
   const rejectDonor = (element) => {
