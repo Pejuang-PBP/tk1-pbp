@@ -7,7 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import Notifications, Report, Response
 from form_donor.models import request_donor
+from form_pencari_donor.models import request_pencari_donor
 from .forms import ReportForm
+from dashboard_pencari_donor.models import Donor, Notifications as DonorNotifications
 
 # Create your views here.
 
@@ -85,3 +87,40 @@ def report(request):
       return not_authenticated()
 
   return HttpResponseNotFound()
+
+@csrf_exempt
+def donors(request):
+  if request.user.is_authenticated:
+    if request.method == "GET":
+      requestObject = request_donor.objects.filter(user=request.user)
+      donors = Donor.objects.select_related().filter(request_id=requestObject[0].pk)
+      data = []
+
+      for donor in donors:
+        donor_data = request_pencari_donor.objects.filter(donor=donor)
+        data.append({
+          "donor_data": serializers.serialize("json", donor_data),
+          "chosen": donor.chosen,
+          "pk": donor.pk
+        })
+      return JsonResponse(data, safe=False)
+    elif request.method == "DELETE":
+      donorId = request.GET.get("id")
+      try:
+        donor = Donor.objects.filter(id=donorId)
+        DonorNotifications.objects.create(title=f"Request Donor anda telah ditolak oleh donor.", message="Silahkan memilih request lainnya.", user=donor[0].donor)
+        donor.delete()
+        return HttpResponse("Successfully deleted row.")
+      except request_donor.DoesNotExist:
+        return HttpResponse("Record does not exist.", status=404)
+    elif request.method == "POST":
+      donorId = request.POST["id"]
+      donor = Donor.objects.get(pk=donorId)
+      DonorNotifications.objects.create(title=f"Request Donor anda telah diterima oleh donor.", message="Anda akan dihubungi oleh mereka dalam jangka waktu yang dekat.", user=donor.donor)
+      donor.chosen = True
+      donor.save()
+      return HttpResponse("Success")
+
+    
+  return not_authenticated()
+

@@ -54,9 +54,10 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
         >
           Batalkan
         </button>
-        <button class="btn btn-primary position-relative">
+        <button class="btn btn-primary position-relative" onclick="openDonorModal()">
           Calon Penerima Donor
           <span
+            id="donorCounter"
             class="
               position-absolute
               top-0
@@ -242,12 +243,120 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   </div>
 </div>
 
+<div
+  class="modal fade"
+  id="donorModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  {% csrf_token %}
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Daftar Calon Penerima Donor</h5>
+      </div>
+      <div class="modal-body" id="donorList">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- AJAX call to fetch and render notifications, request, and report -->
 <script src="{% static 'dashboard/scripts/donor/notifications.js' %}"></script>
 <script src="{% static 'dashboard/scripts/donor/request.js' %}"></script>
 <script>
+
+  const fetchDonor = () => {
+    fetch("/dashboard-donor/api/donor")
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("donorCounter").innerHTML = data.length;
+      const findChosen = data.find(item => item.chosen === true);
+      if (findChosen !== undefined) {
+        document.getElementById("donorCounter").innerHTML = 1;
+        return [{ 
+          ...findChosen,
+          donor_data: JSON.parse(findChosen.donor_data)[0].fields,
+        }]
+      }
+      return data.map((item) => {
+        return {
+          ...item,
+          donor_data: JSON.parse(item.donor_data)[0].fields,
+        }
+      })
+    })
+    .then((processed) => {
+      const donorContainer = document.getElementById("donorList");
+      let donorString = "";
+      processed.forEach((item) => {
+        donorString += `
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${item.donor_data.nama}</h5>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p class="card-text mb-0">Nomor HP: ${item.donor_data.nomor_hp}</p>
+                  <p class="card-text mb-0">Golongan Darah: ${item.donor_data.golongan_darah}</p>
+                  <p class="card-text mb-0">Rhesus: ${item.donor_data.rhesus}</p>
+                </div>
+                <div class="col-sm-6">
+                  <p class="card-text mb-0">Alamat:</p>
+                  <p>
+                    ${item.donor_data.alamat}
+                  </p>
+                </div>
+              </div>
+              ${item.chosen === false
+                ? `
+                <div class="float-end">
+                  <a data-id=${item.pk} href="#" class="btn btn-danger" style="margin-left: auto;" onclick="rejectDonor(this)">Decline</a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="acceptDonor(this)">Accept</a>
+                </div>
+                `
+                : `
+                <p class="text-success">Accepted</p>
+                `
+              }
+            </div>
+          </div>
+        `
+      })
+      donorContainer.innerHTML = donorString.length > 0 ? donorString : "Belum mendapatkan calon penerima donor.";
+    })
+  }
+  const rejectDonor = (element) => {
+    fetch(`/dashboard-donor/api/donor?id=${element.dataset.id}`, { method: "DELETE" })
+      .then(() => {
+        fetchDonor();
+      })
+  }
+  const acceptDonor = (element) => {
+    fetch(`/dashboard-donor/api/donor`, { method: "POST", body: new URLSearchParams({ id: element.dataset.id }) })
+      .then(() => {
+        fetchDonor();
+      })
+  }
+  fetchDonor()
+  setInterval(fetchDonor, 10000)
+</script>
+<script>
   const reportDetailsModal = new window.bootstrap.Modal(document.getElementById('reportDetailsModal'))
   
+  const donorModal = new window.bootstrap.Modal(document.getElementById("donorModal"));
+
+  const openDonorModal = () => {
+    donorModal.show();
+  }
+
   const openReportDetailsModal = (item) => {
     const { title, message, timestamp, reply } = item.dataset;
     let replyString = "";
