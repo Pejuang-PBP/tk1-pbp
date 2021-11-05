@@ -25,7 +25,7 @@ class request_pencari_donor(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nama = models.CharField(max_length=100)
-    nomor_induk = models.PositiveIntegerField()
+    nomor_induk = models.CharField(max_length=16)
     nomor_hp = models.CharField(max_length=12)
     jenis_kelamin = models.CharField(max_length=10, choices=ROLE_GENDER)
     tempat_lahir = models.CharField(max_length=10)
