@@ -35,7 +35,7 @@ def weight_validator(val):
 		raise forms.ValidationError("Berat badan minimal pendonor adalah 55 kg.")
 		
 def nik_validator(val):
-	if len(str(val)) != 16:
+	if len(val) != 16:
 		raise forms.ValidationError("NIK harus terdiri dari 16 angka")
 
 def komorbid_validator(val):
@@ -54,7 +54,7 @@ class request_donor_form(forms.ModelForm):
 	nama = forms.CharField(label="Nama Lengkap")
 	nama.widget.attrs.update({'class':'form-control'})
 	
-	nomor_induk = forms.IntegerField(validators=[nik_validator], label='NIK')
+	nomor_induk = forms.CharField(validators=[nik_validator], label='NIK')
 	nomor_induk.widget.attrs.update({'class':'form-control'})
 	
 	nomor_hp = forms.CharField(validators=[nohp_validator], label="Nomor HP")
