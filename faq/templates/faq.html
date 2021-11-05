@@ -22,47 +22,50 @@ KonvaSearch {% endblock %} {% block head %}
           <font color="#050359">Question</font>
         </h2> 
         <div id="accordion">
-          {% for a in nanya %}
-        <div class="card">
-          <div class="card-header">
-            <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
-              {{a.tanya}}
-            </a>
-          </div>
-          <div id="collapseOne" class="collapse">
-            <div class="card-body">
-              {{a.jawab}}
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+                Apa itu Plasma Konvalesen?
+              </a>
+            </div>
+            <div id="collapseOne" class="collapse">
+              <div class="card-body">
+                Plasma konvalesen adalah plasma darah dari pasien yang telah sembuh/penyintas Covid-19.
+                 Plasma darah pasien penyintas ini mengandung antibodi atau kekebalan tubuh terhadap Covid-19.
+              </div>
             </div>
           </div>
-        </div>
-       
-        <div class="card">
-          <div class="card-header">
-            <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              Pertanyaan #2
-            </a>
-          </div>
-          <div id="collapseTwo" class="collapse">
-            <div class="card-body">
-              Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | Isi Konten 2 | 
+          
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                Apa itu Terapi Plasma Konvalesen?
+              </a>
+            </div>
+            <div id="collapseTwo" class="collapse">
+              <div class="card-body">
+                Terapi plasma konvalesen merupakan salah satu metode pengobatan yang kini digunakan untuk menangani pasien COVID-19, khususnya dengan gejala berat.
+                Terapi plasma konvalesen adalah pemberian plasma darah donor atau sumbangan dari pasien yang telah sembuh dari COVID-19 (penyintas COVID-19) kepada pasien COVID-19.
+              </div>
             </div>
           </div>
-        </div>
-       
-        <div class="card">
-          <div class="card-header">
-            <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              Pertanyaan #3
-            </a>
-          </div>
-          <div id="collapseThree" class="collapse">
-            <div class="card-body">
-              Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | Isi Konten 3 | 
-            </div>
-          </div>
-        </div>
 
-        {% endfor %}
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                Pertanyaan #3
+              </a>
+            </div>
+            <div id="collapseThree" class="collapse">
+              <div class="card-body">
+               <p>contoh :
+                 <br> * balon 
+                 <br> * bingung
+               </p> 
+              </div>
+            </div>
+          </div>
+  
       </div>
 
       <br>
@@ -91,7 +94,6 @@ KonvaSearch {% endblock %} {% block head %}
           </button>
       
         </form>
-    
 
       </div>
 
