@@ -35,7 +35,7 @@ def weight_validator(val):
 		raise forms.ValidationError("Berat badan minimal pendonor adalah 55 kg.")
 		
 def nik_validator(val):
-	if len(val) != 16:
+	if not val.isdigit() or len(val) != 16:
 		raise forms.ValidationError("NIK harus terdiri dari 16 angka")
 
 def komorbid_validator(val):
