@@ -66,7 +66,7 @@ const setFields = (item) => {
   golongan_darah.setAttribute("value", item.fields.golongan_darah);
   rhesus.setAttribute("value", item.fields.rhesus);
 };
-  
+
 const updateRequest = () => {
   fetch("/dashboard-donor/api/request")
     .then((res) => res.json())
