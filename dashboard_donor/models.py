@@ -1,7 +1,7 @@
 import django.utils.timezone
 from django.db import models
 from django.contrib.auth.models import User
-# from form_donor.models import request_donor
+from form_donor.models import request_donor
 from dashboard_pencari_donor.models import Donor
 
 # Create your models here.
