@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def index(request):
-    if not hasattr(request.user, 'request_donor') and not hasattr(request.user, 'request_pencari_donor'):
+    if not hasattr(request.user, 'request_donor'):
         if request.method == 'POST':
             form = request_donor_form(request.POST)
             if form.is_valid():
