@@ -307,7 +307,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
               ${item.chosen === false
                 ? `
                 <div class="float-end">
-                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="takeRequest(this)">Send Request</a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="checkRequest(this)"></a>
                 </div>
                 `
                 : `
@@ -323,8 +323,8 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     })
   }
 
-  const takeRequest = (element) => {
-    fetch(`/dashboard-donor/api/donor`, { method: "POST", body: new URLSearchParams({ id: element.dataset.id }) })
+  const checkRequest = (element) => {
+    fetch(`/dashboard-pencari/api/donor`, { method: "GET", body: new URLSearchParams({ id: element.dataset.id }) })
       .then(() => {
         fetchDonor();
       })
