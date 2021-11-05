@@ -5,9 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Notifications, Report, Response
+from .models import Notifications, Report, Response, Donor
 from .forms import ReportForm
 from form_pencari_donor.models import request_pencari_donor
+from form_donor.models import request_donor
+from dashboard_donor.models import Notifications as DonorNotifications
 import json
 
 def not_authenticated():
@@ -82,6 +84,31 @@ def report(request):
     else:
       return not_authenticated()
   return HttpResponseNotFound()
+
+@csrf_exempt
+def donors(request):
+  if request.user.is_authenticated:
+    if request.method == "GET":
+      donors = Donor.objects.select_related().filter(donor=request.user)
+      data = []
+
+      for donor in donors:
+        donor_data = request_donor.objects.filter(donor=donor)
+        data.append({
+          "donor_data": serializers.serialize("json", donor_data)
+        })
+      return JsonResponse(data, safe=False)
+    elif request.method == "DELETE":
+      donorId = request.GET.get("id")
+      try:
+        donor = Donor.objects.filter(id=donorId)
+        DonorNotifications.objects.create(title=f"Request Donor anda telah ditolak oleh donor.", message="Silahkan memilih request lainnya.", user=donor[0].donor)
+        donor.delete()
+        return HttpResponse("Successfully deleted row.")
+      except request_pencari_donor.DoesNotExist:
+        return HttpResponse("Record does not exist.", status=404)
+    
+  return not_authenticated()
 
 
 
