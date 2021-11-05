@@ -74,16 +74,16 @@
 		{% csrf_token %}
 			
 		<div class="form-group mt-1">
-			<strong><label for="{{ field.auto_id }}">{{ form.nama_lengkap.label }}</label></strong>
-				{{ form.nama_lengkap }}
+			<strong><label for="{{ field.auto_id }}">{{ form.nama.label }}</label></strong>
+				{{ form.nama }}
 		</div><br>
 		<div class="form-group mt-1">
-			<strong><label for="{{ field.auto_id }}">{{ form.nik.label }}</label></strong>
-				{{ form.nik }}
+			<strong><label for="{{ field.auto_id }}">{{ form.nomor_induk.label }}</label></strong>
+				{{ form.nomor_induk }}
 		</div><p id='p1' class='mb-4' style='color:red'></p>
 		<div class="form-group mt-1">
-			<strong><label for="{{ field.auto_id }}">{{ form.no_hp.label }}</label></strong>
-				{{ form.no_hp }}
+			<strong><label for="{{ field.auto_id }}">{{ form.nomor_hp.label }}</label></strong>
+				{{ form.nomor_hp }}
 		</div><br>
 		<div class="form-group mt-1">
 			<strong><label for="{{ field.auto_id }}">{{ form.jenis_kelamin.label }}</label></strong>

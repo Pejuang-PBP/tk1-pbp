@@ -51,14 +51,14 @@ class request_donor_form(forms.ModelForm):
 	
 	komorbid = forms.ChoiceField(choices = YES_OR_NO, validators=[komorbid_validator], label="Apakah Anda memiliki penyakit penyerta?", widget=forms.RadioSelect)
 	
-	nama_lengkap = forms.CharField(label="Nama Lengkap")
-	nama_lengkap.widget.attrs.update({'class':'form-control'})
+	nama = forms.CharField(label="Nama Lengkap")
+	nama.widget.attrs.update({'class':'form-control'})
 	
-	nik = forms.IntegerField(validators=[nik_validator], label='NIK')
-	nik.widget.attrs.update({'class':'form-control'})
+	nomor_induk = forms.IntegerField(validators=[nik_validator], label='NIK')
+	nomor_induk.widget.attrs.update({'class':'form-control'})
 	
-	no_hp = forms.CharField(validators=[nohp_validator], label="Nomor HP")
-	no_hp.widget.attrs.update({'class':'form-control'})
+	nomor_hp = forms.CharField(validators=[nohp_validator], label="Nomor HP")
+	nomor_hp.widget.attrs.update({'class':'form-control'})
 	
 	jenis_kelamin = forms.ChoiceField(choices = GENDER_CHOICES, label="Jenis Kelamin")
 	jenis_kelamin.widget.attrs.update({'class':'form-select'})

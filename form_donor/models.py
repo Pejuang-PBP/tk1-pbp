@@ -23,9 +23,9 @@ class request_donor(models.Model):
 	]
 	
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	nama_lengkap = models.CharField(max_length=100)
-	nik = models.IntegerField()
-	no_hp = models.CharField(max_length=12)
+	nama = models.CharField(max_length=100)
+	nomor_induk = models.IntegerField()
+	nomor_hp = models.CharField(max_length=12)
 	jenis_kelamin = models.CharField(max_length=9, choices=GENDER_CHOICES)
 	tempat_lahir = models.CharField(max_length=100)
 	tanggal_lahir = models.DateField()

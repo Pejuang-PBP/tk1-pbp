@@ -5,7 +5,7 @@ $(document).ready(function() {
 		$("#warning_alert").hide();
 	});
 			
-	$("#id_nik").keyup(function(){
+	$("#id_nomor_induk").keyup(function(){
 		if($(this).val().length != 16){
 			$("#p1").html("NIK harus terdiri dari 16 angka");
 		}
