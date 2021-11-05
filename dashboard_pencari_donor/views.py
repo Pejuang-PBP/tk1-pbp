@@ -89,13 +89,16 @@ def report(request):
 def donors(request):
   if request.user.is_authenticated:
     if request.method == "GET":
-      donors = Donor.objects.select_related().filter(donor=request.user)
+      requestObject = request_pencari_donor.objects.filter(user=request.user)
+      donors = Donor.objects.select_related().filter(request_id=requestObject[0].pk)
       data = []
 
       for donor in donors:
         donor_data = request_donor.objects.filter(donor=donor)
         data.append({
-          "donor_data": serializers.serialize("json", donor_data)
+          "donor_data": serializers.serialize("json", donor_data),
+          "chosen": donor.chosen,
+          "pk": donor.pk
         })
       return JsonResponse(data, safe=False)
     elif request.method == "DELETE":
@@ -107,6 +110,13 @@ def donors(request):
         return HttpResponse("Successfully deleted row.")
       except request_pencari_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
+    elif request.method == "POST":
+      donorId = request.body["id"]
+      donor = Donor.objects.get(pk=donorId)
+      donor.chosen = True
+      donor.save()
+      return HttpResponse("Success")
+
     
   return not_authenticated()
 

@@ -279,11 +279,18 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("donorCounter").innerHTML = data.length;
+      const findChosen = data.find(item => item.chosen === true);
+      if (findChosen !== undefined) {
+        document.getElementById("donorCounter").innerHTML = 1;
+        return [{ 
+          ...findChosen,
+          donor_data: JSON.parse(findChosen.donor_data)[0].fields,
+        }]
+      }
       return data.map((item) => {
         return {
           ...item,
           donor_data: JSON.parse(item.donor_data)[0].fields,
-          pk: JSON.parse(item.donor_data)[0].pk
         }
       })
     })
@@ -309,10 +316,17 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
                 </div>
               </div>
 
-              <div class="float-end">
-                <a data-id=${item.pk} href="#" class="btn btn-danger" style="margin-left: auto;" onclick="rejectDonor(this)">Decline</a>
-                <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto;">Accept</a>
-              </div>
+              ${item.chosen === false
+                ? `
+                <div class="float-end">
+                  <a data-id=${item.pk} href="#" class="btn btn-danger" style="margin-left: auto;" onclick="rejectDonor(this)">Decline</a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto;">Accept</a>
+                </div>
+                `
+                : `
+                <p class="text-success">Accepted</p>
+                `
+              }
             </div>
           </div>
         `
@@ -322,6 +336,12 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   }
   const rejectDonor = (element) => {
     fetch(`/dashboard-pencari/api/donor?id=${element.dataset.id}`, { method: "DELETE" })
+      .then(() => {
+        fetchDonor();
+      })
+  }
+  const acceptDonor = (element) => {
+    fetch(`/dashboard-pencari/api/donor`, { method: "POST", body: new URLSearchParams({ id: element.dataset.id }) })
       .then(() => {
         fetchDonor();
       })
