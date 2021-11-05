@@ -22,16 +22,16 @@ KonvaSearch {% endblock %} {% block head %}
           <font color="#050359">Question</font>
         </h2> 
         <div id="accordion">
-       
+          {% for a in nanya %}
         <div class="card">
           <div class="card-header">
             <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
-              Pertanyaan #1
+              {{a.tanya}}
             </a>
           </div>
           <div id="collapseOne" class="collapse">
             <div class="card-body">
-              Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 | Isi Konten 1 |  
+              {{a.jawab}}
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ KonvaSearch {% endblock %} {% block head %}
           </div>
         </div>
 
-       
+        {% endfor %}
       </div>
 
       <br>
