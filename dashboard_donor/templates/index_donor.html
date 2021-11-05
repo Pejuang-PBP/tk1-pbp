@@ -285,8 +285,8 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     .then((processed) => {
       const donorContainer = document.getElementById("donorList");
       let donorString = "";
+      console.log(processed);
       processed.forEach((item) => {
-        if (item.donor_data === "[]") {
           donorString += `
           <div class="card">
             <div class="card-body">
@@ -304,10 +304,10 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
                   </p>
                 </div>
               </div>
-              ${item.chosen === false
+              ${item.donor_data !== "[]"
                 ? `
                 <div class="float-end">
-                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="checkRequest(this)"></a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto; onclick="checkRequest(this)">Request</a>
                 </div>
                 `
                 : `
@@ -317,14 +317,13 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
             </div>
           </div>
         `
-        }
       })
       donorContainer.innerHTML = donorString.length > 0 ? donorString : "Belum mendapatkan calon penerima donor.";
     })
   }
 
   const checkRequest = (element) => {
-    fetch(`/dashboard-pencari/api/donor`, { method: "GET", body: new URLSearchParams({ id: element.dataset.id }) })
+    fetch(`/dashboard-donor/api/donor`, { method: "GET", body: new URLSearchParams({ id: element.dataset.id }) })
       .then(() => {
         fetchDonor();
       })

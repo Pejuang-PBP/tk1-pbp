@@ -106,7 +106,7 @@ def donors(request):
           "rhesus": request.rhesus,
           "pk": request.pk
         })
-      requestJson = serializers.serialize("json",requestObject)
+      
       return JsonResponse(data, safe=False)
     
     elif request.method == "POST":
