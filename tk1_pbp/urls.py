@@ -26,7 +26,6 @@ import faq.urls as faq
 import form_donor.urls as form_donor
 import form_pencari_donor.urls as form_pencari_donor
 import lokasi_donor.urls as lokasi_donor
-import faq.urls as faq
 
 from django.contrib.auth import logout
 

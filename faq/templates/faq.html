@@ -8,40 +8,6 @@ KonvaSearch {% endblock %} {% block head %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-{% block javascript %}
-<script>
-  /*
-  call AJAX get request to check if the question
-  already exists or not.
-  */
-  $("#InputPertanyaan").change(function () {
-      //e.preventDefault();
-      // get the question
-      var pertanyaan = $(this).val();
-      // GET AJAX request
-      $.ajax({
-          type: 'GET',
-          url: "{% url 'check_question' %}",
-          data: {"pertanyaan": pertanyaan},
-          dataType: 'json',
-          success: function (data) {
-              // if not valid user, alert the user
-              // if(!response["valid"]){
-              //     alert("You cannot create a friend with same nick name");
-              //     var tanya = $("#InputPertanyaan");
-              //     tanya.val("")
-              //     tanya.focus()
-              // }
-              if (data.is_taken) {
-                alert("This Question already exists.");}
-          },
-          error: function (response) {
-              console.log(response)
-          }
-      })
-  })
-</script>
-{% endblock javascript %}
 {% endblock %} {% block content %}
 
 
@@ -111,40 +77,54 @@ KonvaSearch {% endblock %} {% block head %}
         <form action="" method="POST">
           {% csrf_token %}
           <div class = "mb-3">
-            {{ form.name.errors }}
             <label for = "{{ form.name.InputNama }}" class="form-label">Nama Lengkap:</label>
-            <input type="text" class="form-control" id="InputNama" required="">
+            <input type="text" class="form-control" id="InputNama" name="name">
           </div>
           <div class = "mb-3">
-            {{ form.pertanyaan.errors }}
             <label for = "{{ form.pertanyaan.InputPertanyaan }}" class="form-label">Pertanyaan:</label>
-            <input type="text" class="form-control" id="InputPertanyaan">
+            <input type="text" class="form-control" id="InputPertanyaan" name="pertanyaan">
           </div>
           <button type="submit" 
-            class="btn btn-primary">
-            <!-- onclick="alert('cobacoba')"> -->
+            class="btn btn-primary"
+            onclick="alert('Pertanyaan berhasil diajukan!')">
             Submit
           </button>
       
-          <!-- <input type="submit" value="Submit"> -->
         </form>
     
 
       </div>
 
-
+      <script>
+        /*
+        call AJAX get request to check if the question
+        already exists or not.
+        */
+        $("#InputPertanyaan").change(function () {
+            //e.preventDefault();
+            // get the question
+            var pertanyaan = $(this).val();
+            // GET AJAX request
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'check_question' %}",
+                data: {"pertanyaan": pertanyaan},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_taken) {
+                      alert("Pertanyaan sudah pernah diajukan!");}
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            })
+        })
+      </script>
     
-      <!-- <script>
-        function myFunction() {
-          alert("Hello! I am an alert box!");
-        }
-      </script> -->
-
 </body>
 
 <!-- Footer -->
 {% include "footer.html" %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{% static 'landing_page/js/landing.js' %}"></script>
 {% endblock %}
