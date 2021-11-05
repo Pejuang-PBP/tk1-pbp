@@ -320,7 +320,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
                 ? `
                 <div class="float-end">
                   <a data-id=${item.pk} href="#" class="btn btn-danger" style="margin-left: auto;" onclick="rejectDonor(this)">Decline</a>
-                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto;">Accept</a>
+                  <a data-id=${item.pk} href="#" class="btn btn-success" style="margin-left: auto;" onclick="acceptDonor(this)">Accept</a>
                 </div>
                 `
                 : `

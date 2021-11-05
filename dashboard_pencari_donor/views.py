@@ -111,8 +111,9 @@ def donors(request):
       except request_pencari_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
     elif request.method == "POST":
-      donorId = request.body["id"]
+      donorId = request.POST["id"]
       donor = Donor.objects.get(pk=donorId)
+      DonorNotifications.objects.create(title=f"Request Donor anda telah diterima oleh donor.", message="Anda akan dihubungi oleh mereka dalam jangka waktu yang dekat.", user=donor.donor)
       donor.chosen = True
       donor.save()
       return HttpResponse("Success")
