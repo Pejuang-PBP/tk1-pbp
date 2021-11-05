@@ -279,39 +279,28 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("donorCounter").innerHTML = data.length;
-      const findChosen = data.find(item => item.chosen === true);
-      if (findChosen !== undefined) {
-        document.getElementById("donorCounter").innerHTML = 1;
-        return [{ 
-          ...findChosen,
-          donor_data: JSON.parse(findChosen.donor_data)[0].fields,
-        }]
-      }
-      return data.map((item) => {
-        return {
-          ...item,
-          donor_data: JSON.parse(item.donor_data)[0].fields,
-        }
-      })
+      return data;
+      
     })
     .then((processed) => {
       const donorContainer = document.getElementById("donorList");
       let donorString = "";
       processed.forEach((item) => {
-        donorString += `
+        if (item.donor_data === "[]") {
+          donorString += `
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">${item.donor_data.nama}</h5>
+              <h5 class="card-title">${item.nama}</h5>
               <div class="row">
                 <div class="col-sm-6">
-                  <p class="card-text mb-0">Nomor HP: ${item.donor_data.nomor_hp}</p>
-                  <p class="card-text mb-0">Golongan Darah: ${item.donor_data.golongan_darah}</p>
-                  <p class="card-text mb-0">Rhesus: ${item.donor_data.rhesus}</p>
+                  <p class="card-text mb-0">Nomor HP: ${item.nomor_hp}</p>
+                  <p class="card-text mb-0">Golongan Darah: ${item.golongan_darah}</p>
+                  <p class="card-text mb-0">Rhesus: ${item.rhesus}</p>
                 </div>
                 <div class="col-sm-6">
                   <p class="card-text mb-0">Alamat:</p>
                   <p>
-                    ${item.donor_data.alamat}
+                    ${item.alamat}
                   </p>
                 </div>
               </div>
@@ -328,6 +317,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
             </div>
           </div>
         `
+        }
       })
       donorContainer.innerHTML = donorString.length > 0 ? donorString : "Belum mendapatkan calon penerima donor.";
     })

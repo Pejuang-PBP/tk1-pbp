@@ -93,32 +93,29 @@ def donors(request):
   if request.user.is_authenticated:
     if request.method == "GET":
       requestObject = request_pencari_donor.objects.all()
-      donors = Donor.objects.select_related().filter(request_id=requestObject[0].pk)
       data = []
 
-      for donor in donors:
-        donor_data = request_pencari_donor.objects.filter(donor=donor)
+      for request in requestObject:
+        donor_data = Donor.objects.filter(request_id=request.pk)
         data.append({
           "donor_data": serializers.serialize("json", donor_data),
-          "chosen": donor.chosen,
-          "pk": donor.pk
+          "nama": request.nama,
+          "alamat": request.alamat,
+          "nomor_hp": request.nomor_hp,
+          "golongan_darah": request.golongan_darah,
+          "rhesus": request.rhesus,
+          "pk": request.pk
         })
+      requestJson = serializers.serialize("json",requestObject)
       return JsonResponse(data, safe=False)
-    elif request.method == "DELETE":
-      donorId = request.GET.get("id")
-      try:
-        donor = Donor.objects.filter(id=donorId)
-        DonorNotifications.objects.create(title=f"Request Donor anda telah ditolak oleh donor.", message="Silahkan memilih request lainnya.", user=donor[0].donor)
-        donor.delete()
-        return HttpResponse("Successfully deleted row.")
-      except request_donor.DoesNotExist:
-        return HttpResponse("Record does not exist.", status=404)
+    
     elif request.method == "POST":
       donorId = request.POST["id"]
-      donor = Donor.objects.get(pk=donorId)
-      DonorNotifications.objects.create(title=f"Request Donor anda telah diterima oleh donor.", message="Anda akan dihubungi oleh mereka dalam jangka waktu yang dekat.", user=donor.donor)
-      donor.chosen = True
-      donor.save()
+      donor = request_pencari_donor.objects.get(pk=donorId)
+      data = request_donor.objects.filter(user=request.user)
+      donorObject = Donor.create(donor=request.user, donor_data= data, request = donor)
+      
+      donorObject.save()
       return HttpResponse("Success")
 
     
