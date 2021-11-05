@@ -53,14 +53,70 @@ KonvaSearch {% endblock %} {% block head %}
           <div class="card">
             <div class="card-header">
               <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Pertanyaan #3
+                Apa tujuan Terapi Plasma Konvalesen?
               </a>
             </div>
             <div id="collapseThree" class="collapse">
               <div class="card-body">
-               <p>contoh :
-                 <br> * balon 
-                 <br> * bingung
+               <p> Manfaat yang bisa diperoleh dari terapi plasma konvalesen pada pasien COVID-19 antara lain:
+                <br> - Mempercepat penyembuhan dan pemulihan
+                <br> - Meringankan gejala yang dialami, seperti sesak napas, nyeri dada, atau demam
+                <br> - Mencegah komplikasi dan menurunkan tingkat keparahan penyakit
+                <br> - Menurunkan risiko kematian
+               </p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                Apa saja kriteria pendonor Terapi Plasma Konvalesen?
+              </a>
+            </div>
+            <div id="collapseFour" class="collapse">
+              <div class="card-body">
+               <p>Para penyintas COVID-19 yang ingin melakukan donor plasma darah harus memenuhi kriteria berikut:
+                <br> 1. Berusia 18–60 tahun
+                <br> 2. Memiliki riwayat positif COVID-19 dalam 3 bulan terakhir
+                <br> 3. Dalam kondisi sehat dan sudah dinyatakan sembuh dari COVID-19 minimal selama 14 hari
+                <br> 4. Diutamakan laki-laki, atau perempuan yang belum pernah hamil
+                <br> 5. Memiliki berat badan minimal 55 kg
+                <br> 6. Tidak memiliki riwayat tranfusi darah dalam 6 bulan terakhir
+                <br> 7. Dalam kondisi sehat dan tidak memiliki penyakit menular melalui darah, seperti hepatitis atau HIV/AIDS
+                <br> 8. Memiliki kadar antibodi virus Corona yang cukup
+                <br> 9. Memiliki golongan darah yang cocok dengan penerima
+               </p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                Siapa yang Memerlukan Terapi Plasma Konvalesen?
+              </a>
+            </div>
+            <div id="collapseFive" class="collapse">
+              <div class="card-body">
+               <p>Sasaran terapi plasma konvalesen adalah pasien Covid-19. Tapi tidak semuanya bisa menerima terapi plasma.
+                  Syarat pasien boleh mendapat donor plasma berisi antibodi ini adalah berusia 18 tahun ke atas,
+                tes usap dari nasofaring/orofaring dengan pemeriksaan NAAT (Nucleic Acid Amplification Tests) metode RT-PCR (Reverse Transcriptase-Polymerase Chain Reaction) menunjukkan hasil positif, 
+                dan memiliki gejala sedang, berat, hingga kritis dan dirawat di instalasi rawat inap khusus Covid-19 atau unit perawatan intensif di rumah sakit
+               </p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                Apakah Terapi Plasma Konvalesen ini aman?
+              </a>
+            </div>
+            <div id="collapseThree" class="collapse">
+              <div class="card-body">
+               <p>Berdasarkan data penelitian yang valid, TPK dinyatakan aman. Efek samping berupa alergi memiliki insidensi 1:5.000
                </p> 
               </div>
             </div>
@@ -71,11 +127,13 @@ KonvaSearch {% endblock %} {% block head %}
       <br>
       <br>
       <br>
+      
       <h2>
         <font color="red">Any</font>
         <font color="#CC1728">Other</font>
         <font color="#050359">Question?</font>
-      </h2> 
+      </h2>
+      {% if user.is_authenticated %}
       <div>
         <form action="" method="POST">
           {% csrf_token %}
@@ -94,9 +152,13 @@ KonvaSearch {% endblock %} {% block head %}
           </button>
       
         </form>
-
+        {% else %}
+        <div class="btn-group">
+          <!-- <a href="#" class="btn btn-primary active" aria-current="page">Active link</a> -->
+          <a href="/login" class="btn btn-primary">Login</a>
+        </div>
       </div>
-
+      {% endif %}
       <script>
         /*
         call AJAX get request to check if the question

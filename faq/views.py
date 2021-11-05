@@ -7,7 +7,6 @@ from faq.models import Form1
 
 # Create your views here.
 
-#@login_required(login_url="/login")
 def index(request):
     tanya = Form1.objects.all()
     form = PertanyaanLain(request.POST or None)
