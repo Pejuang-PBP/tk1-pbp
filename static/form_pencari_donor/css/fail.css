@@ -1,0 +1,26 @@
+body{
+	background: #DCEAF9;
+}
+
+h1{
+	color:#203B61
+}
+
+img{
+	width:850px;
+	height:850px;
+}
+
+#btn-home{
+	background-color:#203B61;
+}
+
+a{
+	background-color:#203B61;
+	color:white;
+	text-decoration: none;
+}
+
+a:hover{
+	color:#CDA056;
+}

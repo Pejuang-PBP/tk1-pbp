@@ -9,7 +9,7 @@ from form_pencari_donor.forms import request_pencari_donor_form
 
 @login_required(login_url='/login')
 def index(request):
-    if not request_pencari_donor.objects.filter(user=request.user):
+    if not hasattr(request.user, 'request_pencari_donor'):
         if request.method == 'POST':
             form = request_pencari_donor_form(request.POST)
             if form.is_valid():
@@ -21,4 +21,4 @@ def index(request):
                 return JsonResponse({'ststus': 'ok', 'msg': form.errors})
         else:
             return render(request, "form_pencari_donor.html", {'form': request_pencari_donor_form()})
-    return render(request, "form_pencari_donor.html")
+    return render(request, "fail.html")

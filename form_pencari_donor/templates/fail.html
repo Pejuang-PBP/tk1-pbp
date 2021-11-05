@@ -1,0 +1,23 @@
+{% extends "bootstrap_skeleton.html" %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'form_pencari_donor/css/fail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} Registrasi Pendonor {% endblock %}
+	
+{% block content %}
+<div class="container-fluid mt-5 pt-5">
+	<div class="row flex align-items-center">
+		<div class="col m-auto p-5">
+			<h1 id="oops" style="font-size:100px;"><strong>Oops!</strong></h1><br>
+			<h1><strong>Maaf, Anda sudah pernah membuat request donor sebelumnya</strong></h1><br>
+			<button id="btn-home" class="btn btn-primary btn-lg"><a href="/">Home</a></button>
+		</div>
+		<div class="col">
+			<img  src="{% static 'form_pencari_donor/img/fail5.png' %}">
+		</div>
+	</div>
+</div>
+{% endblock %}

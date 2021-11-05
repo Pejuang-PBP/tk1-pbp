@@ -18,9 +18,9 @@ class request_pencari_donor(models.Model):
 		('O', 'O'),
 	]
     URGENCY = [
-        ('LOW', 'LOW'),
-        ('MEDIUM', 'MEDIUM'),
-        ('HIGH', 'HIGH')
+        ('LOW', 'Low'),
+        ('MEDIUM', 'Medium'),
+        ('HIGH', 'High')
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
