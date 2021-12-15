@@ -323,7 +323,7 @@ KonvaSearch - Dashboard {% endblock %} {% block head %}
   }
 
   const checkRequest = (element) => {
-    fetch(`/dashboard-pencari/api/donor`, { method: "GET", body: new URLSearchParams({ id: element.dataset.id }) })
+    fetch(`/dashboard-donor/api/donor`, { method: "GET", body: new URLSearchParams({ id: element.dataset.id }) })
       .then(() => {
         fetchDonor();
       })
