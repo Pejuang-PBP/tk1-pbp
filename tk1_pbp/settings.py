@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "landing_page",
     "lokasi_donor",
     "django_filters",
+    "authentication",
 ]
 
 MIDDLEWARE = [
