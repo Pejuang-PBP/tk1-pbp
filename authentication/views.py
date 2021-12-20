@@ -20,10 +20,10 @@ def login(request):
             return JsonResponse({
               "status": False,
               "message": "Failed to Login, Account Disabled."
-            })
+            }, status=401)
             
     else:
         return JsonResponse({
           "status": False,
           "message": "Failed to Login, check your email/password."
-        })
+        }, status=401)
