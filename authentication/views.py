@@ -1,7 +1,9 @@
-from django.shortcuts import render
+import json
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
+from landing_page.forms import NewUserForm
 
 @csrf_exempt
 def login(request):
@@ -14,6 +16,7 @@ def login(request):
             # Redirect to a success page.
             return JsonResponse({
               "status": True,
+              "username": user.username,
               "message": "Successfully Logged In!"
             })
         else:
@@ -27,3 +30,17 @@ def login(request):
           "status": False,
           "message": "Failed to Login, check your email/password."
         }, status=401)
+
+
+@csrf_exempt
+def signup(request):
+  form = NewUserForm(json.loads(request.body))
+  if form.is_valid():
+    user = form.save()
+    auth_login(request, user)
+    return JsonResponse({
+      "status": True,
+      "message": "Signup successful",
+    }, status=200)
+  else:
+    return JsonResponse(form.errors, status=400)
