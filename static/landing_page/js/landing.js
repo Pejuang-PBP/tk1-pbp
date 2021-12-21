@@ -10,7 +10,7 @@ function getPercentage(a, totalUser) {
 function refreshCounter() {
   $.ajax({
     type: 'GET',
-    url: 'get_count',
+    url: 'api/counts',
     dataType: 'json',
     success: function(data) {
       var donorPercentage = getPercentage(data.donor_count, data.user_count);

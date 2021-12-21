@@ -1,7 +1,8 @@
 from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Slide
@@ -66,3 +67,22 @@ def get_count(request):
     "recipient_count": request_pencari_donor.objects.count(),
     "user_count": User.objects.count()
   }, status=200)
+
+def get_slides(request):
+  data = []
+  for slide in Slide.objects.all():
+    data.append({
+      "header": slide.headerText,
+      "desc": slide.descText,
+    })
+  return JsonResponse({"data": data}, status=200)
+
+@csrf_exempt
+def test_auth(request):
+  user = request.user
+  print(request.POST)
+  print(user)
+  print(user.is_authenticated)
+  if user.is_authenticated:
+    return JsonResponse({"msg": "gud"})
+  return JsonResponse({"msg": "bad"})
