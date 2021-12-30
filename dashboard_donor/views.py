@@ -113,6 +113,7 @@ def donors(request):
       donorId = request.POST["id"]
       donor = request_pencari_donor.objects.get(pk=donorId)
       data = request_donor.objects.filter(user=request.user)
+      donor.chosen = True
       donorObject = Donor(donor=request.user, donor_data= data, request = donor)
       
       donorObject.save()
