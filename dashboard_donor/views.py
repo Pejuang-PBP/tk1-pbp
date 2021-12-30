@@ -117,6 +117,16 @@ def donors(request):
       
       donorObject.save()
       return HttpResponse("Success")
+    
+    elif request.method == "DELETE":
+      donorId = request.GET.get("id")
+      try:
+        donor = Donor.objects.filter(id=donorId)
+        DonorNotifications.objects.create(title=f"Request Donor anda telah ditolak oleh donor.", message="Silahkan memilih request lainnya.", user=donor[0].donor)
+        donor.delete()
+        return HttpResponse("Successfully deleted row.")
+      except request_donor.DoesNotExist:
+        return HttpResponse("Record does not exist.", status=404)
 
     
   return not_authenticated()
