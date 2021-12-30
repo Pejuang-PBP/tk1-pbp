@@ -21,7 +21,7 @@ def not_authenticated():
 def index(request) :
     return render(request, 'index_donor.html', { "user": request.user })
 
-
+@csrf_exempt
 def get_notifications(request):
   if request.user.is_authenticated:
     notifications = Notifications.objects.filter(user=request.user)
@@ -50,7 +50,8 @@ def get_request(request):
           return HttpResponse("You do not have the permission to remove this row.", content_type="text/plain")
       except request_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
-        
+
+@csrf_exempt        
 def report(request):
   if request.method == "POST":
     if request.user.is_authenticated:
