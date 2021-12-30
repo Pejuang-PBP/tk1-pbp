@@ -1,6 +1,8 @@
+from django.core import serializers
 from django.shortcuts import render
 from .models import UTD
 from .filterForm import FilterKota
+from django.http.response import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -13,3 +15,8 @@ def index(request):
 
 def include(request):
     return render(request, "penjelasanUTD.html")
+
+
+def renderJson(request):
+    data = list(UTD.objects.values())
+    return JsonResponse(data, safe=False)
