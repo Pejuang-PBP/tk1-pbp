@@ -3,7 +3,9 @@ from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from faq.forms import PertanyaanLain
-from faq.models import Form1
+from faq.models import Form1, Tanya
+from .serializers import TanyaSerializer
+from rest_framework import viewsets
 
 # Create your views here.
 
@@ -38,7 +40,9 @@ def check_question(request):
 
     return JsonResponse(data)
 
-
+class Tanya(viewsets.ModelViewSet):
+    queryset = Tanya.objects.all()
+    serializer_class = TanyaSerializer
 
 
 

@@ -18,6 +18,8 @@ from django.http.response import HttpResponseRedirect
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from faq import views
+from rest_framework import routers
 
 import landing_page.urls as landing_page
 import dashboard_donor.urls as dashboard_donor
@@ -30,6 +32,9 @@ import lokasi_donor.urls as lokasi_donor
 import authentication.urls as authentication
 
 from django.contrib.auth import logout
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register('tanyadetails', views.Tanya)
 
 
 def signout(request):
@@ -47,5 +52,6 @@ urlpatterns = [
     path("signout", signout),
     path("lokasi-donor/", include(lokasi_donor)),
     path("faq/", include(faq)),
-    path("auth/", include(authentication))
+    path("auth/", include(authentication)),
+    path("tanya/", include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

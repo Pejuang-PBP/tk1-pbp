@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "lokasi_donor",
     "django_filters",
     "authentication",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
