@@ -49,6 +49,7 @@ def get_request(request):
       except request_pencari_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
 
+@csrf_exempt
 def report(request):
   if request.method == "POST":
     if request.user.is_authenticated:
