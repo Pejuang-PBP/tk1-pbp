@@ -49,6 +49,7 @@ def get_request(request):
       except request_pencari_donor.DoesNotExist:
         return HttpResponse("Record does not exist.", status=404)
 
+@csrf_exempt
 def report(request):
   if request.method == "POST":
     if request.user.is_authenticated:
@@ -116,7 +117,7 @@ def donors(request):
       DonorNotifications.objects.create(title=f"Request Donor anda telah diterima oleh donor.", message="Anda akan dihubungi oleh mereka dalam jangka waktu yang dekat.", user=donor.donor)
       donor.chosen = True
       donor.save()
-      return HttpResponse("Success")
+      return JsonResponse({"status": "success"})
 
     
   return not_authenticated()

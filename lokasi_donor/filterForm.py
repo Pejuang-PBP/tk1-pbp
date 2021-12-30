@@ -7,4 +7,4 @@ class FilterKota(django_filters.FilterSet):
     class Meta:
         model = UTD
         fields = "__all__"
-        exclude = ["nama", "jamOperasi", "nomorTelepon"]
+        exclude = ["nama", "jamOperasi", "nomorTelepon", "alamat"]
